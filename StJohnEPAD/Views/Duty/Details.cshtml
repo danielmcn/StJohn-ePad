@@ -1,0 +1,85 @@
+﻿@model StJohnEPAD.Models.Duty
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Duty</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyStartTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyStartTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyEndTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyEndTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyLocation)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyLocation)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyAdditionalNotes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyAdditionalNotes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyOrganiser)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyOrganiser)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyOrganiserPhoneNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyOrganiserPhoneNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyOrganiserEmailAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyOrganiserEmailAddress)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.DutyID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

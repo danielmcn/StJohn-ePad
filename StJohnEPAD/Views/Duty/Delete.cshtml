@@ -1,0 +1,89 @@
+﻿@model StJohnEPAD.Models.Duty
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Duty</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyStartTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyStartTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyEndTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyEndTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyLocation)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyLocation)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyAdditionalNotes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyAdditionalNotes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyOrganiser)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyOrganiser)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyOrganiserPhoneNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyOrganiserPhoneNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyOrganiserEmailAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyOrganiserEmailAddress)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

@@ -1,0 +1,108 @@
+﻿@model StJohnEPAD.Models.Duty
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Duty</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyName)
+            @Html.ValidationMessageFor(model => model.DutyName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyDate)
+            @Html.ValidationMessageFor(model => model.DutyDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyStartTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyStartTime)
+            @Html.ValidationMessageFor(model => model.DutyStartTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyEndTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyEndTime)
+            @Html.ValidationMessageFor(model => model.DutyEndTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyLocation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyLocation)
+            @Html.ValidationMessageFor(model => model.DutyLocation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyDescription)
+            @Html.ValidationMessageFor(model => model.DutyDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyAdditionalNotes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyAdditionalNotes)
+            @Html.ValidationMessageFor(model => model.DutyAdditionalNotes)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyOrganiser)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyOrganiser)
+            @Html.ValidationMessageFor(model => model.DutyOrganiser)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyOrganiserPhoneNumber)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyOrganiserPhoneNumber)
+            @Html.ValidationMessageFor(model => model.DutyOrganiserPhoneNumber)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyOrganiserEmailAddress)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyOrganiserEmailAddress)
+            @Html.ValidationMessageFor(model => model.DutyOrganiserEmailAddress)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

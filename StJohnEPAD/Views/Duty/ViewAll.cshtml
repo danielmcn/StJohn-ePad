@@ -1,0 +1,67 @@
+﻿@model IEnumerable<StJohnEPAD.Models.Duty>
+
+@{
+    ViewBag.Title = "View Duties";
+}
+
+<h2>View Duties</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyStartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyEndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyOrganiser)
+        </th>
+        <th>
+            Options
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DutyName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DutyDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DutyStartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DutyEndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DutyOrganiser)
+        </td>
+        <td>
+           
+            @Html.ActionLink("Details", "Details", new { id=item.DutyID })
+
+            @{
+                if(User.IsInRole("DutyAdmin"))
+                {
+                    <text>| @Html.ActionLink("Edit", "Edit", new { id=item.DutyID })</text>
+                    <text>| @Html.ActionLink("Delete", "Delete", new { id=item.DutyID })</text>
+                }
+            }
+            
+        </td>
+    </tr>
+}
+
+</table>
