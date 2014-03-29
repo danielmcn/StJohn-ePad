@@ -31,14 +31,15 @@ namespace StJohnEPAD
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
-
+            
+            /*
             Database.SetInitializer<UsersContext>(new InitializeCustomMembership());
             UsersContext context = new UsersContext();
             context.Database.Initialize(true);
             if (!WebSecurity.Initialized)
                 WebSecurity.InitializeDatabaseConnection("DefaultConnection",
                      "UserProfile", "UserId", "UserName", autoCreateTables: true);
-
+            */
         }
     }
 }

@@ -14,7 +14,7 @@ using StJohnEPAD.Models;
 namespace StJohnEPAD.Controllers
 {
     [Authorize]
-    //[InitializeSimpleMembership]
+    [InitializeSimpleMembership]
     public class AccountController : Controller
     {
         //

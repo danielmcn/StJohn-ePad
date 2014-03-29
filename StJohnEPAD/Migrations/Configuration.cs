@@ -11,7 +11,7 @@ namespace StJohnEPAD.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(StJohnEPAD.DAL.SJAContext context)

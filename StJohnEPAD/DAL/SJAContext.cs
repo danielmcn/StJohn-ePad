@@ -22,12 +22,12 @@ namespace StJohnEPAD.DAL
 
         }
 
-        public DbSet<Member> Members { get; set; }
+        //public DbSet<Member> Members { get; set; }
 
         public DbSet<Duty> Duties { get; set; }
 
         public DbSet<Equipment> Equipment { get; set; }
 
-        //public DbSet<UserProfile> Users { get; set; }
+        public DbSet<UserProfile> Users { get; set; }
     }
 }

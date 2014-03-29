@@ -24,7 +24,9 @@ namespace StJohnEPAD.Controllers
 
         public ActionResult ViewAll()
         {
+            if(db.Duties.ToList().Count > 0)
             return View(db.Duties.ToList());
+            return View();
         }
 
         //
