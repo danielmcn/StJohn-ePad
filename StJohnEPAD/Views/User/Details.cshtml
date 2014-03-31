@@ -1,0 +1,78 @@
+﻿@model StJohnEPAD.Models.UserProfile
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>UserProfile</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmailAddress)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmailAddress)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.TelephoneNumber)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TelephoneNumber)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Skills)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Skills)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Rank)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Rank)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.OperationalRoles)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.OperationalRoles)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NonOperationalRoles)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NonOperationalRoles)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.UserId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
