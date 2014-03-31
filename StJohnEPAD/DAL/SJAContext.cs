@@ -18,7 +18,7 @@ namespace StJohnEPAD.DAL
             //Database.SetInitializer<SJAContext>(new DropCreateDatabaseIfModelChanges<SJAContext>());
             //Database.SetInitializer<SJAContext>(new DropCreateDatabaseAlways<SJAContext>());
             //Database.SetInitializer<SJAContext>(new SJAInitializer());
-            Database.SetInitializer<SJAContext>(null);
+            //Database.SetInitializer<SJAContext>(null);
 
         }
 

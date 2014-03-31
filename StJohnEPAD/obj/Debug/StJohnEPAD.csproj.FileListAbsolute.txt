@@ -101,6 +101,5 @@ C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\DotNetOpenAuth.OpenI
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Debug\StJohnEPAD.csprojResolveAssemblyReference.cache
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Debug\StJohnEPAD.dll
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Debug\StJohnEPAD.pdb
-C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Debug\StJohnEPAD.Migrations.InitialCreate.resources
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Debug\StJohnEPAD.Migrations.Initial.resources
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Debug\StJohnEPAD.csproj.GenerateResource.Cache
-C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Debug\StJohnEPAD.Migrations.new1.resources
