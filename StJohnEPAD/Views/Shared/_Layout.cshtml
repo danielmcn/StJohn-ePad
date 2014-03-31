@@ -32,7 +32,8 @@
                             <!--Admin tools-->
                             @if(User.IsInRole("Administrator"))
                             {
-                                <li>@Html.ActionLink("Admin", "Admin", "Home")</li>
+                                <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
+                                <li>@Html.ActionLink("Stats", "Index", "Stats")</li>
                             }
                             <!--- login / logout section -->
                             @if (Request.IsAuthenticated) {

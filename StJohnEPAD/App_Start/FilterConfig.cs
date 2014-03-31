@@ -8,6 +8,8 @@ namespace StJohnEPAD
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            //TODO: Always request HTTPS
+            //filters.Add(new RequireHttpsAttribute());
         }
     }
 }
