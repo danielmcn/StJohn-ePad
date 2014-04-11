@@ -19,7 +19,7 @@ namespace StJohnEPAD.Models
         public string DutyName { get; set; }
         #endregion
 
-        #region Event details
+        #region Event detailsiun
         [Required]
         [DataType(DataType.Date)]
         [Display(Name = "Date")]
@@ -41,10 +41,10 @@ namespace StJohnEPAD.Models
         public string DutyAdditionalNotes { get; set; }
 
         [Display(Name = "Creator")]
-        public Member DutyCreator { get; set; }
+        public UserProfile DutyCreator { get; set; }
 
         [Display(Name = "Members")]
-        public List<Member> DutyMembers { get; set; }
+        public List<UserProfile> DutyMembers { get; set; }
         #endregion
 
         #region Organiser details
@@ -57,24 +57,35 @@ namespace StJohnEPAD.Models
         #endregion
 
     }
-    /*
-    public class LocalPasswordModel
+
+    public class DutyAvailability
     {
-        [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Current password")]
-        public string OldPassword { get; set; }
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int DutyAvailabilityID { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
-        [Display(Name = "New password")]
-        public string NewPassword { get; set; }
+        [DisplayFormat(NullDisplayText = "No response")]
+        public bool? DutyAvailabilityResponse { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
-        public string ConfirmPassword { get; set; }
+        public int DutyID { get; set; }
+        public virtual Duty Duty { get; set; }
+
+        public int UserId { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
+
     }
-     * */
+
+    public class PostDutyReport
+    {
+        [Key]
+        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        public int PostDutyReportID { get; set; }
+
+        public string PRFNumbers { get; set; }
+        public string AnyOtherComments { get; set;}
+
+        public int DutyID { get; set; }
+        public virtual Duty Duty { get; set; }
+
+    }
 }

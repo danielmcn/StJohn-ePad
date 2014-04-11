@@ -25,6 +25,8 @@ namespace StJohnEPAD.DAL
         //public DbSet<Member> Members { get; set; }
 
         public DbSet<Duty> Duties { get; set; }
+        public DbSet<DutyAvailability> DutyAvailabilty { get; set; }
+        public DbSet<PostDutyReport> PostDutyReport { get; set; }
 
         public DbSet<Equipment> Equipment { get; set; }
 
