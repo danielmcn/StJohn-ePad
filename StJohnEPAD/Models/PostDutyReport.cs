@@ -15,7 +15,7 @@ namespace StJohnEPAD.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int PostDutyReportID { get; set; }
 
-        public string PRFNumbers { get; set; }
+        public List<string> PRFNumbers { get; set; }
         public string AnyOtherComments { get; set; }
 
         public int DutyID { get; set; }

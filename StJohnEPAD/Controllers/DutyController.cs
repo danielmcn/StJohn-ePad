@@ -68,7 +68,7 @@ namespace StJohnEPAD.Controllers
 
         //
         // GET: /Duty/Edit/5
-
+        [Authorize(Roles = "Administrator,DutyAdmin")]
         public ActionResult Edit(int id = 0)
         {
             Duty duty = db.Duties.Find(id);
@@ -81,7 +81,7 @@ namespace StJohnEPAD.Controllers
 
         //
         // POST: /Duty/Edit/5
-
+        [Authorize(Roles = "Administrator,DutyAdmin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Duty duty)
@@ -97,7 +97,7 @@ namespace StJohnEPAD.Controllers
 
         //
         // GET: /Duty/Delete/5
-
+        [Authorize(Roles = "Administrator,DutyAdmin")]
         public ActionResult Delete(int id = 0)
         {
             Duty duty = db.Duties.Find(id);
@@ -110,7 +110,7 @@ namespace StJohnEPAD.Controllers
 
         //
         // POST: /Duty/Delete/5
-
+        [Authorize(Roles = "Administrator,DutyAdmin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

@@ -26,7 +26,50 @@ namespace StJohnEPAD.Migrations
 
         private void SeedDuties(SJAContext context)
         {
-            List<Duty> duties = new List<Duty>
+
+            context.Duties.AddOrUpdate(
+                d => d.DutyName,
+
+                new Duty
+                {
+                    DutyName = "Special Olympics Ulster",
+                    DutyDate = new DateTime(2014, 04, 26),
+                    DutyStartTime = new DateTime(2014, 04, 26, hour: 8, minute: 0, second: 0),
+                    DutyEndTime = new DateTime(2014, 04, 26, hour: 18, minute: 0, second: 0),
+                    DutyDescription = "Training Day",
+                    DutyLocation = "Jim Baker Stadium, Antrim",
+                },
+                new Duty
+                {
+                    DutyName = "Larne Somme Society",
+                    DutyDate = new DateTime(2014, 04, 26),
+                    DutyStartTime = new DateTime(2014, 04, 26, hour: 11, minute: 0, second: 0),
+                    DutyEndTime = new DateTime(2014, 04, 26, hour: 16, minute: 0, second: 0),
+                    DutyDescription = "Gun Running Celebration!",
+                },
+                new Duty
+                {
+                    DutyName = "Belfast Marathon",
+                    DutyDate = new DateTime(2014, 05, 05),
+                    DutyStartTime = new DateTime(2014, 05, 05, hour: 09, minute: 0, second: 0),
+                    DutyEndTime = new DateTime(2014, 05, 05, hour: 19, minute: 0, second: 0),
+                    DutyDescription = "Annual Marathon",
+                },
+                new Duty
+                {
+                    DutyName = "Writers Suarez & Cathedral",
+                    DutyDate = new DateTime(2014, 05, 09),
+                    DutyStartTime = new DateTime(2014, 05, 09, hour: 12, minute: 0, second: 0),
+                    DutyEndTime = new DateTime(2014, 05, 09, hour: 18, minute: 0, second: 0),
+                    DutyLocation = "Belfast",
+                });
+            
+            context.SaveChanges();
+
+
+
+
+            /*List<Duty> duties = new List<Duty>
             {
                 new Duty {
                     DutyName = "Special Olympics Ulster",
@@ -62,15 +105,15 @@ namespace StJohnEPAD.Migrations
 
             foreach (Duty d in duties)
             {
-                context.Duties.Add(d);
+                context.Duties.AddOrUpdate(d);
             }
             context.SaveChanges();
-
+            */
         }
 
         private void SeedUsers()
         {
-            //Inilaise our WebSecurity
+            //Initilaise our WebSecurity
             WebSecurity.InitializeDatabaseConnection(
                 "DefaultConnection",
                 "UserProfile",

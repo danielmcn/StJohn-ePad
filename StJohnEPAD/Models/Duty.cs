@@ -43,8 +43,8 @@ namespace StJohnEPAD.Models
         [Display(Name = "Creator")]
         public UserProfile DutyCreator { get; set; }
 
-        [Display(Name = "Members")]
-        public List<UserProfile> DutyMembers { get; set; }
+        //[Display(Name = "Members")]
+        //public List<UserProfile> DutyMembers { get; set; }
         #endregion
 
         #region Organiser details

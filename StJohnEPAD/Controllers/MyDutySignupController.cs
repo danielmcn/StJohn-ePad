@@ -3,6 +3,7 @@ using StJohnEPAD.Models;
 using StJohnEPAD.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -16,7 +17,6 @@ namespace StJohnEPAD.Controllers
         //First things first: get our database
         private SJAContext db = new SJAContext();
         
-        
         //
         // GET: /MyDutySignup/
         [Authorize]
@@ -26,9 +26,7 @@ namespace StJohnEPAD.Controllers
             
             //first get our existing results
             var signupResult =
-                from duties in db.Duties
-                join signups in db.DutyAvailabilty
-                on duties.DutyID equals signups.DutyID
+                from signups in db.DutyAvailabilty
                 where signups.UserId == userId
                 select signups;
                 
@@ -48,89 +46,112 @@ namespace StJohnEPAD.Controllers
         }
 
         //
-        // GET: /MyDutySignup/Details/5
+        // GET: /DutySignup/Details/5
 
-        public ActionResult Details(int id)
+        public ActionResult Details(int id = 0)
         {
-            return View();
+            DutyAvailability dutyavailability = db.DutyAvailabilty.Find(id);
+            if (dutyavailability == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dutyavailability);
         }
 
         //
-        // GET: /MyDutySignup/Create
+        // GET: /DutySignup/Create
 
         public ActionResult Create()
         {
+            ViewBag.DutyID = new SelectList(db.Duties, "DutyID", "DutyName");
+            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName");
             return View();
         }
 
         //
-        // POST: /MyDutySignup/Create
+        // POST: /DutySignup/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(DutyAvailability dutyavailability)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add insert logic here
 
+                db.DutyAvailabilty.Add(dutyavailability);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+
+            ViewBag.DutyID = new SelectList(db.Duties, "DutyID", "DutyName", dutyavailability.DutyID);
+            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", dutyavailability.UserId);
+            return View(dutyavailability);
         }
 
         //
-        // GET: /MyDutySignup/Edit/5
+        // GET: /DutySignup/Edit/5
 
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int id = 0)
         {
-            return View();
+            DutyAvailability dutyavailability = db.DutyAvailabilty.Find(id);
+            if (dutyavailability == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.DutyID = new SelectList(db.Duties, "DutyID", "DutyName", dutyavailability.DutyID);
+            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", dutyavailability.UserId);
+            return View(dutyavailability);
         }
 
         //
-        // POST: /MyDutySignup/Edit/5
+        // POST: /DutySignup/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(DutyAvailability dutyavailability)
         {
-            try
+            if (ModelState.IsValid)
             {
-                // TODO: Add update logic here
-
+                dutyavailability.UserId = WebSecurity.GetUserId(User.Identity.Name);
+                db.Entry(dutyavailability).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
-                return View();
-            }
+            ViewBag.DutyID = new SelectList(db.Duties, "DutyID", "DutyName", dutyavailability.DutyID);
+            ViewBag.UserId = new SelectList(db.Users, "UserId", "UserName", dutyavailability.UserId);
+            return View(dutyavailability);
         }
 
         //
-        // GET: /MyDutySignup/Delete/5
+        // GET: /DutySignup/Delete/5
 
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int id = 0)
         {
-            return View();
+            DutyAvailability dutyavailability = db.DutyAvailabilty.Find(id);
+            if (dutyavailability == null)
+            {
+                return HttpNotFound();
+            }
+            return View(dutyavailability);
         }
 
         //
-        // POST: /MyDutySignup/Delete/5
+        // POST: /DutySignup/Delete/5
 
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
         {
-            try
-            {
-                // TODO: Add delete logic here
+            DutyAvailability dutyavailability = db.DutyAvailabilty.Find(id);
+            db.DutyAvailabilty.Remove(dutyavailability);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
 
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
         }
     }
 }
