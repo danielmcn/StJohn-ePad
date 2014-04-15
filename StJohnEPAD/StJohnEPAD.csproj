@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\MyDutySignupController.cs" />
     <Compile Include="Controllers\StatsController.cs" />
     <Compile Include="Controllers\DutyController.cs" />
     <Compile Include="Controllers\DutySignupController.cs" />
@@ -327,6 +328,11 @@
     <Content Include="Views\Stats\Index.cshtml" />
     <Content Include="Views\Stats\HoursByMember.cshtml" />
     <Content Include="Views\Stats\HoursByDivision.cshtml" />
+    <Content Include="Views\MyDutySignup\Create.cshtml" />
+    <Content Include="Views\MyDutySignup\Delete.cshtml" />
+    <Content Include="Views\MyDutySignup\Details.cshtml" />
+    <Content Include="Views\MyDutySignup\Edit.cshtml" />
+    <Content Include="Views\MyDutySignup\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

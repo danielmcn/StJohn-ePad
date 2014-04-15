@@ -8,7 +8,8 @@ namespace StJohnEPAD.ViewModels
 {
     public class DutySignupViewModel
     {
-
-        
+        public List<Duty> allDuties { get; set; }
+        public List<UserProfile> allUsers { get; set; }
+        public List<DutyAvailability> allSignups { get; set; }
     }
 }
