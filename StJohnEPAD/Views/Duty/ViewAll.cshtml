@@ -53,7 +53,7 @@
             @Html.ActionLink("Details", "Details", new { id=item.DutyID })
 
             @{
-                if(User.IsInRole("DutyAdmin"))
+                if(User.IsInRole("DutyAdmin") || User.IsInRole("Administrator"))
                 {
                     <text>| @Html.ActionLink("Edit", "Edit", new { id=item.DutyID })</text>
                     <text>| @Html.ActionLink("Delete", "Delete", new { id=item.DutyID })</text>

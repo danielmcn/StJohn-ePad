@@ -162,6 +162,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\StatsController.cs" />
     <Compile Include="Controllers\DutyController.cs" />
     <Compile Include="Controllers\DutySignupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -178,9 +179,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DutyAvailabilty.cs" />
     <Compile Include="Models\Equipment.cs" />
     <Compile Include="Models\Duty.cs" />
     <Compile Include="Models\Member.cs" />
+    <Compile Include="Models\PostDutyReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\DutySignupViewModel.cs" />
   </ItemGroup>
@@ -320,6 +323,10 @@
     <Content Include="Views\DutySignup\Create.cshtml" />
     <Content Include="Views\DutySignup\Edit.cshtml" />
     <Content Include="Views\DutySignup\Delete.cshtml" />
+    <Content Include="Views\Stats\Error.cshtml" />
+    <Content Include="Views\Stats\Index.cshtml" />
+    <Content Include="Views\Stats\HoursByMember.cshtml" />
+    <Content Include="Views\Stats\HoursByDivision.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

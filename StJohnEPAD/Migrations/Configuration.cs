@@ -29,11 +29,35 @@ namespace StJohnEPAD.Migrations
             List<Duty> duties = new List<Duty>
             {
                 new Duty {
-                    DutyName = "Test Duty 1",
-                    DutyDate = new DateTime(2012, 02, 01),
-                    DutyStartTime = new DateTime(2012, 02, 01, hour: 0, minute: 1, second: 0),
-                    DutyEndTime = new DateTime(2012, 02, 01, hour: 0, minute: 2, second: 0)
+                    DutyName = "Special Olympics Ulster",
+                    DutyDate = new DateTime(2014, 04, 26),
+                    DutyStartTime = new DateTime(2014, 04, 26, hour: 8, minute: 0, second: 0),
+                    DutyEndTime = new DateTime(2014, 04, 26, hour: 18, minute: 0, second: 0),
+                    DutyDescription = "Training Day",
+                    DutyLocation = "Jim Baker Stadium, Antrim",
                 },
+                new Duty {
+                    DutyName = "Larne Somme Society",
+                    DutyDate = new DateTime(2014, 04, 26),
+                    DutyStartTime = new DateTime(2014, 04, 26, hour: 11, minute: 0, second: 0),
+                    DutyEndTime = new DateTime(2014, 04, 26, hour: 16, minute: 0, second: 0),
+                    DutyDescription = "Gun Running Celebration!",
+                },
+                new Duty {
+                    DutyName = "Belfast Marathon",
+                    DutyDate = new DateTime(2014, 05, 05),
+                    DutyStartTime = new DateTime(2014, 05, 05, hour: 09, minute: 0, second: 0),
+                    DutyEndTime = new DateTime(2014, 05, 05, hour: 19, minute: 0, second: 0),
+                    DutyDescription = "Annual Marathon",
+                },
+                new Duty {
+                    DutyName = "Writers Suarez & Cathedral",
+                    DutyDate = new DateTime(2014, 05, 09),
+                    DutyStartTime = new DateTime(2014, 05, 09, hour: 12, minute: 0, second: 0),
+                    DutyEndTime = new DateTime(2014, 05, 09, hour: 18, minute: 0, second: 0),
+                    DutyLocation = "Belfast",
+                },
+
             };
 
             foreach (Duty d in duties)

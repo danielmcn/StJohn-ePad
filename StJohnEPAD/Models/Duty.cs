@@ -57,35 +57,4 @@ namespace StJohnEPAD.Models
         #endregion
 
     }
-
-    public class DutyAvailability
-    {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int DutyAvailabilityID { get; set; }
-
-        [DisplayFormat(NullDisplayText = "No response")]
-        public bool? DutyAvailabilityResponse { get; set; }
-
-        public int DutyID { get; set; }
-        public virtual Duty Duty { get; set; }
-
-        public int UserId { get; set; }
-        public virtual UserProfile UserProfile { get; set; }
-
-    }
-
-    public class PostDutyReport
-    {
-        [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int PostDutyReportID { get; set; }
-
-        public string PRFNumbers { get; set; }
-        public string AnyOtherComments { get; set;}
-
-        public int DutyID { get; set; }
-        public virtual Duty Duty { get; set; }
-
-    }
 }
