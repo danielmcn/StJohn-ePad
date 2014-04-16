@@ -10,6 +10,7 @@ using StJohnEPAD.DAL;
 
 namespace StJohnEPAD.Controllers
 {
+    [Authorize]
     public class DutyController : Controller
     {
         private SJAContext db = new SJAContext();
@@ -18,11 +19,6 @@ namespace StJohnEPAD.Controllers
         // GET: /Duty/
 
         public ActionResult Index()
-        {
-            return View();
-        }
-
-        public ActionResult ViewAll()
         {
             return View(db.Duties.ToList());
         }

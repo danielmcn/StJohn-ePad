@@ -20,7 +20,7 @@ namespace StJohnEPAD.Migrations
 
         protected override void Seed(SJAContext context)
         {
-            SeedUsers();
+            SeedUsers(context);
             SeedDuties(context);
         }
 
@@ -111,7 +111,7 @@ namespace StJohnEPAD.Migrations
             */
         }
 
-        private void SeedUsers()
+        private void SeedUsers(SJAContext context)
         {
             //Initilaise our WebSecurity
             WebSecurity.InitializeDatabaseConnection(
@@ -139,6 +139,11 @@ namespace StJohnEPAD.Migrations
                     "UserAcc",
                     "password",
                     new { Name = "Standard User", });
+
+            UserProfile new1 = context.Users.First();
+            new1.Qualifications = new List<TrainingRecord>();
+            new1.Qualifications.Add(new TrainingRecord { TrainingType = "AED", TrainingDate = new DateTime(1990, 02, 01), });
+            context.SaveChanges();
         }
     }
 }

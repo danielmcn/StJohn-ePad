@@ -92,6 +92,12 @@
     </div>
 </fieldset>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id=Model.DutyID }) |
+    @{
+        if (User.IsInRole("DutyAdmin") || User.IsInRole("Administrator"))
+        {
+            <text> @Html.ActionLink("Edit", "Edit", new { id=Model.DutyID })</text>
+            <text>| @Html.ActionLink("Delete", "Delete", new { id=Model.DutyID }) |</text>
+        }
+    }
     @Html.ActionLink("Back to List", "Index")
 </p>

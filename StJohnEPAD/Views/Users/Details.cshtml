@@ -1,0 +1,88 @@
+﻿@model StJohnEPAD.ViewModels.SingleUserTrainingRecordViewModel
+
+@{
+    ViewBag.Title = "User Details";
+}
+
+<h2>@Html.DisplayFor(model => model.User.Name)</h2>
+
+<fieldset>
+    <legend>User</legend>
+    <table>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.User.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.User.UserName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.User.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.User.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.User.EmailAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.User.EmailAddress)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.User.TelephoneNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.User.TelephoneNumber)
+            </td>
+        </tr>
+    </table>
+</fieldset>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.User.UserId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<fieldset>
+    <legend>Records</legend>
+    @if (Model.TrainingRecords != null)
+    { 
+        <table>
+            <caption>Training Record</caption>
+            <tr>
+                <th>ID</th>
+                <th>Type</th>
+                <th>Valid from</th>
+                <th>Valid to</th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model.TrainingRecords)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(tr => item.TrainingRecordID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(tr => item.TrainingType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(tr => item.TrainingDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(tr => item.RevalidationDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Select", "Index", new { courseID = item.TrainingRecordID })
+                    </td>
+                </tr> 
+            }
+
+        </table> 
+    }
+</fieldset>

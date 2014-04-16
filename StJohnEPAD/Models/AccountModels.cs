@@ -28,35 +28,49 @@ namespace StJohnEPAD.Models
     public class UserProfile
     {
         #region Essential/key fields
+
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
+        [Display(Name = "User ID")]
         public int UserId { get; set; }
+
+        [Display(Name = "User name")]
         public string UserName { get; set; }
-        //public int MemberID { get; set; }
-        public string Name { get; set; }
-        public string EmailAddress { get; set; }
+
         #endregion
 
         #region Personal details
-        /// <summary>Address for the user</summary>
-        public string Address { get; set; }
 
-        /// <summary>Telephone number for the user</summary>
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+        [EmailAddress]
+        [Display(Name = "E-Mail")]
+        public string EmailAddress { get; set; }
+
+        /// <summary>
+        /// Phone number input.  Regex allows 11 digit numbers, starting 07.  We only want mobiles for our text service to function.
+        /// </summary>
+        [RegularExpression(@"^07\d{9}",
+         ErrorMessage = "Must be a continuous 11 digit number, starting with 07.")]
+        [Display(Name = "UK Mobile",Prompt = "11 digit UK Mobile (07....)")]
         public string TelephoneNumber { get; set; }
 
-        /// <summary>Emergency contact for the user.  Takes a new instance of Member</summary>
-        public Member EmergencyContact { get; set; } //TODO: Doesnt have "relationship" - new class extending Member? New "Non-member" class?
-
-        /// <summary>General skills for the user - organisation, computer use, driving, leadership, etc</summary>
-        public string Skills { get; set; }
         #endregion
 
         #region SJA Properties
-        public string Rank { get; set; }
-
-        //TODO: fixed roles within division - enum? class? - FA, OFA, AED, etc
-        public string OperationalRoles { get; set; }
-        public string NonOperationalRoles { get; set; }
+        //Navigation property.  Still not sure how it works, but it does *shrug*
+        public ICollection<TrainingRecord> Qualifications { get; set; }
+        /*
+        public DateTime? JoinDate { get; set; }
+        public DateTime? TFADate { get; set; }
+        public DateTime? OFADate { get; set; }
+        public DateTime? PTADate { get; set; }
+        public DateTime? ETADate { get; set; }
+        public DateTime? AEDDate { get; set; }
+        public DateTime? CycleDate { get; set; }
+        */
+        //Refactored into collection
         #endregion
     }
 
@@ -107,7 +121,7 @@ namespace StJohnEPAD.Models
     {
         #region Essential
         
-        //TODO: Remove user name and replace with Email
+        //TODO: Remove user name and replace with Email??
         [Required]
         [Key]
         [Display(Name = "User name")]
@@ -119,6 +133,7 @@ namespace StJohnEPAD.Models
         [Display(Name = "E-mail address")]
         public string EmailAddress { get; set; }
 
+        [Required]
         [EmailAddress]
         [Display(Name = "Confirm e-mail")]
         [Compare("EmailAddress", ErrorMessage = "The email and confirmation email do not match.")]
@@ -136,34 +151,10 @@ namespace StJohnEPAD.Models
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Name can not be empty.")]
         [Display(Name = "Name")]
         public string Name { get; set; }
         
-        #endregion
-
-        #region Personal details
-        /// <summary>Address for the user</summary>
-        
-        public string Address { get; set; }
-
-        /// <summary>Telephone number for the user</summary>
-        [Phone]
-        public string TelephoneNumber { get; set; }
-
-        /// <summary>Emergency contact for the user.  Takes a new instance of Member</summary>
-        //public Member EmergencyContact { get; set; } //TODO: Doesnt have "relationship" - new class extending Member? New "Non-member" class?
-
-        /// <summary>General skills for the user - organisation, computer use, driving, leadership, etc</summary>
-        public string Skills { get; set; }
-        #endregion
-
-        #region SJA Properties
-        public string Rank { get; set; }
-
-        //TODO: fixed roles within division - enum? class? - FA, OFA, AED, etc
-        public string OperationalRoles { get; set; }
-        public string NonOperationalRoles { get; set; }
         #endregion
     }
 

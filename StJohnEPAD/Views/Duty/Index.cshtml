@@ -1,19 +1,69 @@
-﻿@{
-    ViewBag.Title = "Duty Home";
+﻿@model IEnumerable<StJohnEPAD.Models.Duty>
+
+@{
+    ViewBag.Title = "Duties";
 }
 <div class="StJohnHeader">
     <h1>@ViewBag.Title.</h1>
 </div>
-<h2>@ViewBag.Message</h2>
-<br />
 
-<h2>New Duty</h2>
 <p>
-    @Html.ActionLink("Click here", "Create") to create a new duty
+    @if(User.IsInRole("Administrator") || User.IsInRole("DutyAdmin"))
+    {
+        @Html.ActionLink("Create New", "Create")
+    }
 </p>
 
-<h2>St John EPAD</h2>
-<p>
-    @Html.ActionLink("Click here", "ViewAll") to view existing 
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyStartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyEndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DutyOrganiser)
+        </th>
+        <th>
+            
+        </th>
+    </tr>
 
-</p>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.DutyName, "Details", new { id=item.DutyID })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DutyDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DutyStartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DutyEndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DutyOrganiser)
+        </td>
+        <td>
+            @{
+                if(User.IsInRole("DutyAdmin") || User.IsInRole("Administrator"))
+                {
+                    <text> @Html.ActionLink("Edit", "Edit", new { id=item.DutyID })</text>
+                    <text>| @Html.ActionLink("Delete", "Delete", new { id=item.DutyID })</text>
+                }
+            }
+            
+        </td>
+    </tr>
+}
+
+</table>

@@ -60,7 +60,7 @@ namespace StJohnEPAD.Controllers
         //
         // GET: /Account/Register
 
-        [AllowAnonymous]
+        [Authorize(Roles="Administrator")]
         public ActionResult Register()
         {
             return View();
@@ -70,7 +70,7 @@ namespace StJohnEPAD.Controllers
         // POST: /Account/Register
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "Administrator")]
         [ValidateAntiForgeryToken]
         public ActionResult Register(RegisterModel model)
         {
@@ -80,7 +80,8 @@ namespace StJohnEPAD.Controllers
                 try
                 {
                     WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new { Name = model.Name });
-                    WebSecurity.Login(model.UserName, model.Password);
+                    //Todo: Create a "success" message for this
+                    //WebSecurity.Login(model.UserName, model.Password);
                     return RedirectToAction("Index", "Home");
                 }
                 catch (MembershipCreateUserException e)
