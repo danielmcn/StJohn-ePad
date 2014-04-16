@@ -56,7 +56,7 @@ namespace StJohnEPAD.Controllers
             {
                 db.Duties.Add(duty);
                 db.SaveChanges();
-                return RedirectToAction("ViewAll");
+                return RedirectToAction("Index");
             }
 
             return View(duty);
@@ -86,7 +86,7 @@ namespace StJohnEPAD.Controllers
             {
                 db.Entry(duty).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("ViewAll");
+                return RedirectToAction("Index");
             }
             return View(duty);
         }
@@ -114,7 +114,7 @@ namespace StJohnEPAD.Controllers
             Duty duty = db.Duties.Find(id);
             db.Duties.Remove(duty);
             db.SaveChanges();
-            return RedirectToAction("ViewAll");
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
