@@ -18,7 +18,7 @@ namespace StJohnEPAD.Models
         public string TrainingType { get; set; }
 
         [Required]
-        [Display(Name = "Aquired on")]
+        [Display(Name = "Acquired on")]
         [DataType(DataType.Date)]
         [DisplayFormat(NullDisplayText = "N/a", DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime TrainingDate { get; set; }

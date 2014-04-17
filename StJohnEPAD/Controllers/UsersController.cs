@@ -66,8 +66,8 @@ namespace StJohnEPAD.Controllers
                 var currentProfile = db.Users.FirstOrDefault(u => u.UserId == userprofile.UserId);
                 currentProfile.EmailAddress = userprofile.EmailAddress;
                 currentProfile.TelephoneNumber = userprofile.TelephoneNumber;
-                currentProfile.Qualifications = new LinkedList<TrainingRecord>();
-                currentProfile.Qualifications.Add(new TrainingRecord { TrainingType = "TESTTYPE", TrainingDate = new DateTime(year: 2011, month: 1, day: 1) });
+                //currentProfile.Qualifications = new LinkedList<TrainingRecord>();
+                //currentProfile.Qualifications.Add(new TrainingRecord { TrainingType = "TESTTYPE", TrainingDate = new DateTime(year: 2011, month: 1, day: 1) });
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
