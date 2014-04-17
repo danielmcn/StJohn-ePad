@@ -28,6 +28,7 @@ namespace StJohnEPAD.Controllers
 
         public ActionResult Details(int id = 0)
         {
+            /*
             var viewModel = new SingleUserTrainingRecordViewModel();
             viewModel.User = db.Users.Find(id);
             if (viewModel.User == null)
@@ -36,8 +37,18 @@ namespace StJohnEPAD.Controllers
             }
 
             viewModel.TrainingRecords = db.TrainingRecord.Where(x => x.UserId == id);
+             * 
+             * return View(viewModel);
+            */
 
-            return View(viewModel);
+            UserProfile user = (UserProfile)db.Users.Include(u => u.Qualifications).Where(u => u.UserId == id).FirstOrDefault();
+            
+            if(user == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(user);
         }
 
         //
