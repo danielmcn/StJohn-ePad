@@ -15,11 +15,18 @@ namespace StJohnEPAD.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int PostDutyReportID { get; set; }
 
-        public List<string> PRFNumbers { get; set; }
+        public ICollection<string> PRFNumbers { get; set; }
         public string AnyOtherComments { get; set; }
 
-        public int DutyID { get; set; }
-        public virtual Duty Duty { get; set; }
+        public ICollection<UserProfile> Attendees { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        public DateTime? LastUpdated { get; set; }
+
+        public UserProfile LastUpdateBy { get; set; }
+
+        public virtual UserProfile UserProfile { get; set; }
 
     }
 }

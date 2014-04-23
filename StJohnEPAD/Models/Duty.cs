@@ -56,5 +56,7 @@ namespace StJohnEPAD.Models
         public string DutyOrganiserEmailAddress { get; set; }
         #endregion
 
+
+        public virtual PostDutyReport PostDutyReport { get; set; }
     }
 }
