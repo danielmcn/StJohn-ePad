@@ -137,7 +137,9 @@
                 infoWindow.open(map, marker);
             });
 
-            var address = "Jim Baker Stadium, Antrim";
+            //var address = "Jim Baker Stadium, Antrim";
+            var address = '@Model.DutyLocation';
+            //map_status.innerText = String(document.getElementById("dutyLocation").innerText);
 
             var geocoder = new google.maps.Geocoder();
             geocoder.geocode({ 'address': address }, function (results, status) {
