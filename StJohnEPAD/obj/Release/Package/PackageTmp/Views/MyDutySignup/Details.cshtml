@@ -1,0 +1,36 @@
+﻿@model StJohnEPAD.Models.DutyAvailability
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>DutyAvailability</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyAvailabilityResponse)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyAvailabilityResponse)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Duty.DutyName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Duty.DutyName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserProfile.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserProfile.UserName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.DutyAvailabilityID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

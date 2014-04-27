@@ -21,7 +21,7 @@ namespace StJohnEPAD.Models
         public ICollection<UserProfile> Attendees { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime? LastUpdated { get; set; }
 
         public UserProfile LastUpdateBy { get; set; }

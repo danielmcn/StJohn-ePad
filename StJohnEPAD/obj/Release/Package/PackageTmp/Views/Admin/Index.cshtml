@@ -1,0 +1,18 @@
+﻿@{
+    ViewBag.Title = "Admin Home";
+}
+<div class="StJohnHeader">
+    <h1>@ViewBag.Title.</h1>
+</div>
+<h2>@ViewBag.Message</h2>
+<br />
+
+<h2>View Members</h2>
+<p>
+    @Html.ActionLink("Click here", "ViewMembers") to view the registered users
+</p>
+
+<h2>View Stats</h2>
+<p>
+    @Html.ActionLink("Click here", "ViewStats") to view stats
+</p>

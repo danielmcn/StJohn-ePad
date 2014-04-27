@@ -1,0 +1,64 @@
+﻿@model StJohnEPAD.Models.Document
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Document</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentGUID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentGUID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DutyStartTime)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DutyStartTime)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentVersion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentVersion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentRestricted)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentRestricted)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.DocumentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -56,6 +56,15 @@ namespace StJohnEPAD.Models
         public string DutyOrganiserEmailAddress { get; set; }
         #endregion
 
+        #region Map overrides
+        //Manually provide the lat & long to override the location for mapping purposes
+        [Display(Name = "Map Longitude")]
+        public string DutyLocationLong { get; set; }
+
+        [Display(Name = "Map Latitude")]
+        public string DutyLocationLat { get; set; }
+        #endregion
+
 
         public virtual PostDutyReport PostDutyReport { get; set; }
     }

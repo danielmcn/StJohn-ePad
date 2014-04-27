@@ -6,6 +6,12 @@
 
 <h2>Details</h2>
 
+<aside>
+    <div id="map_status" />
+    <div id="map" style="width: 320px; height: 240px; border:solid; border-color:black; visibility:hidden" />
+    <div id="map_alerts" />  
+</aside>
+
 <fieldset>
     <legend>Duty</legend>
 
@@ -15,18 +21,6 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.DutyName)
     </div>
-
-
-
-    <div class="editor-label">
-        @Html.LabelFor(model => model.DutyOrganiserEmailAddress)
-    </div>
-    <div class="editor-field">
-        @Html.EditorFor(model => model.DutyOrganiserEmailAddress)
-        @Html.ValidationMessageFor(model => model.DutyOrganiserEmailAddress)
-    </div>
-
-
 
     <div class="display-label">
          @Html.DisplayNameFor(model => model.DutyDate)
@@ -53,7 +47,7 @@
          @Html.DisplayNameFor(model => model.DutyLocation)
     </div>
     <div class="display-field">
-        @Html.DisplayFor(model => model.DutyLocation, new { ID = "dutyLocation" })
+        @Html.DisplayFor(model => model.DutyLocation)
     </div>
 
     <div class="display-label">
@@ -70,6 +64,9 @@
         @Html.DisplayFor(model => model.DutyAdditionalNotes)
     </div>
 
+    @if(User.IsInRole("Administrator") || User.IsInRole("DutyAdmin"))
+    {
+        <p><b>Restricted information:</b></p>
     <div class="display-label">
          @Html.DisplayNameFor(model => model.DutyOrganiser)
     </div>
@@ -83,13 +80,7 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.DutyOrganiserPhoneNumber)
     </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.DutyOrganiserEmailAddress)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DutyOrganiserEmailAddress)
-    </div>
+    }
 </fieldset>
 <p>
     @{
@@ -107,7 +98,9 @@
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyCFtrl1tSnMrosRz_rSADUQVjWPSi4EiUY"></script>
     <script type="text/javascript">
         $(document).ready(function () {
-            initialiseMap();
+            //Oonly process the map if DutyLocation is "truthy"
+            if('@Model.DutyLocation')
+                initialiseMap();
         });
 
         function initialiseMap()
@@ -139,7 +132,6 @@
 
             //var address = "Jim Baker Stadium, Antrim";
             var address = '@Model.DutyLocation';
-            //map_status.innerText = String(document.getElementById("dutyLocation").innerText);
 
             var geocoder = new google.maps.Geocoder();
             geocoder.geocode({ 'address': address }, function (results, status) {
@@ -152,14 +144,12 @@
 
                 }
                 else {
-                    alert("Geocode was not successful for the following reason: " + status);
+                    document.getElementById("map_alerts").innerHTML = "Geocode was not successful for the following reason: " + status;
                 }
             });
+            document.getElementById("map").style.visibility = 'visible';
         }
 
 
     </script>
 }
-
-    <div id="map_status" />
-    <div id="map" style="width: 320px; height: 240px;" />  

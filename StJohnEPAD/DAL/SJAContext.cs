@@ -32,5 +32,7 @@ namespace StJohnEPAD.DAL
         public DbSet<Equipment> Equipment { get; set; }
 
         public DbSet<UserProfile> Users { get; set; }
+
+        public DbSet<Document> Documents { get; set; }
     }
 }

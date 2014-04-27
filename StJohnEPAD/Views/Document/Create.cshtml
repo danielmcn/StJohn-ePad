@@ -1,0 +1,84 @@
+﻿@model StJohnEPAD.Models.Document
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Document</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentName)
+            @Html.ValidationMessageFor(model => model.DocumentName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentGUID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentGUID)
+            @Html.ValidationMessageFor(model => model.DocumentGUID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyDate)
+            @Html.ValidationMessageFor(model => model.DutyDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyStartTime)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyStartTime)
+            @Html.ValidationMessageFor(model => model.DutyStartTime)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentDescription)
+            @Html.ValidationMessageFor(model => model.DocumentDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentVersion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentVersion)
+            @Html.ValidationMessageFor(model => model.DocumentVersion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentRestricted)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentRestricted)
+            @Html.ValidationMessageFor(model => model.DocumentRestricted)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
