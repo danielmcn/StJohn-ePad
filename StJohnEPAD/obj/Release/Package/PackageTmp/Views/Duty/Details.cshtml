@@ -98,6 +98,7 @@
     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&key=AIzaSyCFtrl1tSnMrosRz_rSADUQVjWPSi4EiUY"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            //Oonly process the map if DutyLocation is "truthy"
             if('@Model.DutyLocation')
                 initialiseMap();
         });

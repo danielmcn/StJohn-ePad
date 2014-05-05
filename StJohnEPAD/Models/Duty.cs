@@ -26,11 +26,11 @@ namespace StJohnEPAD.Models
         public DateTime DutyDate { get; set; }
         [Required]
         [DataType(DataType.Time)]
-        [Display(Name = "Start time")]
+        [Display(Name = "Start")]
         public DateTime DutyStartTime { get; set; }
         [Required]
         [DataType(DataType.Time)]
-        [Display(Name = "End time")]
+        [Display(Name = "End")]
         public DateTime DutyEndTime { get; set; }
         
         [Display(Name = "Location")]
@@ -66,6 +66,9 @@ namespace StJohnEPAD.Models
         #endregion
 
 
+        //Navigation propeties
         public virtual PostDutyReport PostDutyReport { get; set; }
+        public virtual ICollection<DutyAvailability> DutySignups { get; set; }
+
     }
 }

@@ -12,8 +12,8 @@ namespace StJohnEPAD.Models
     public class PostDutyReport
     {
         [Key]
-        [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
-        public int PostDutyReportID { get; set; }
+        [ForeignKey("Duty")]
+        public int DutyID { get; set; }
 
         public ICollection<string> PRFNumbers { get; set; }
         public string AnyOtherComments { get; set; }
@@ -28,5 +28,6 @@ namespace StJohnEPAD.Models
 
         public virtual UserProfile UserProfile { get; set; }
 
+        public virtual Duty Duty { get; set; }
     }
 }

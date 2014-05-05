@@ -45,6 +45,15 @@
             @Html.ValidationMessageFor(model => model.TelephoneNumber)
         </div>
 
+        <div class="editor-label">
+            @Html.LabelFor(model => model.CurrentRole)
+        </div>
+        <div class="editor-field">
+            <!--TODO: Drop down list-->
+            @Html.EditorFor(model => model.CurrentRole)
+            @Html.ValidationMessageFor(model => model.CurrentRole)
+        </div>
+
         <p>
             <input type="submit" value="Save" />
         </p>

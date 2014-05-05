@@ -61,6 +61,15 @@ namespace StJohnEPAD.Models
         #region SJA Properties
         //Navigation property.  Still not sure how it works, but it does *shrug*
         public ICollection<TrainingRecord> Qualifications { get; set; }
+        
+        //To store, eg, OFA, PTA, Inactive...
+        //public String CurrentRole { get; set; }
+        
+
+
+        [Display(Name = "Current Role")]
+        public CurrentRoleEnum CurrentRole { get; set; }
+
         /*
         public DateTime? JoinDate { get; set; }
         public DateTime? TFADate { get; set; }
@@ -72,6 +81,24 @@ namespace StJohnEPAD.Models
         */
         //Refactored into collection
         #endregion
+
+        //Navigation properties
+        public virtual ICollection<DutyAvailability> DutySignups { get; set; }
+    }
+
+    public enum CurrentRoleEnum
+    {
+        Unknown,
+        Doctor,
+        Nurse,
+        Paramedic,
+        ETA,
+        PTA,
+        OFA,
+        TFA,
+        Observer,
+        Inactive,
+        ExMember
     }
 
     public class RegisterExternalLoginModel
@@ -156,6 +183,8 @@ namespace StJohnEPAD.Models
         public string Name { get; set; }
         
         #endregion
+
+
     }
 
     public class ExternalLogin

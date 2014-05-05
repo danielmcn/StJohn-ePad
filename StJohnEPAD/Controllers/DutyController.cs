@@ -6,7 +6,9 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using StJohnEPAD.Models;
+using StJohnEPAD.ViewModels;
 using StJohnEPAD.DAL;
+using WebMatrix.WebData;
 
 namespace StJohnEPAD.Controllers
 {
@@ -18,9 +20,19 @@ namespace StJohnEPAD.Controllers
         //
         // GET: /Duty/
 
-        public ActionResult Index()
+        public ActionResult Index(string viewAll)
         {
-            return View(db.Duties.ToList());
+            if (User.IsInRole("Administrator") || User.IsInRole("DutyAdmin"))
+                if(viewAll != null)
+                if (viewAll.Equals("true"))
+                {
+                    ViewBag.ViewCurrentOrAllLink = "allMode";
+                    return View(db.Duties.ToList());
+                }
+            ViewBag.ViewCurrentOrAllLink = "currentMode";
+
+            return View(db.Duties.Where(x => x.DutyDate >= DateTime.Now).Include(x => x.DutySignups).ToList());
+            //return View(db.Duties.ToList());
         }
 
         //

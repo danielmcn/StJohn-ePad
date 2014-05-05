@@ -10,6 +10,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using StJohnEPAD.Filters;
 using StJohnEPAD.Models;
+using StJohnEPAD.DAL;
 
 namespace StJohnEPAD.Controllers
 {
@@ -128,6 +129,7 @@ namespace StJohnEPAD.Controllers
 
         public ActionResult Manage(ManageMessageId? message)
         {
+
             ViewBag.StatusMessage =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."

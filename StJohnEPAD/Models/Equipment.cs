@@ -22,21 +22,28 @@ namespace StJohnEPAD.Models
         #region Equipment details
         [DataType(DataType.Date)]
         [Display(Name = "Last Check")]
-        public DateTime LastCheck { get; set; }
+        public DateTime? EquipmentLastCheck { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "Next Check")]
-        public DateTime NextCheck { get; set; }
-
+        public DateTime? EquipmentNextCheck { get; set; }
         [Display(Name = "Description")]
-        public String ItemDescription { get; set; }
+        public String EquipmentDescription { get; set; }
+        [Display(Name = "Notes")]
+        public String EquipmentNotes { get; set; }
         #endregion
 
         #region Equipment check in/out & responsibility details
-        [Display(Name = "Last checked out")]
-        public Member LastCheckedOut { get; set; }
-        [Display(Name = "Current checked out")]
-        public Member CurrentCheckedOut { get; set; }
-        #endregion
+        [Display(Name = "Checked in by")]
+        public UserProfile EquipmentCheckInBy { get; set; }
+        [DataType(DataType.Date)]
+        [Display(Name = "Last checked out date")]
+        public DateTime? EquipmentCheckInDate { get; set; }
 
+        [Display(Name = "Checked out by")]
+        public UserProfile EquipmentCheckOutBy { get; set; }
+        [DataType(DataType.Date)]
+        [Display(Name = "Last checked out date")]
+        public DateTime? EquipmentCheckOutDate { get; set; }
+        #endregion
     }
 }

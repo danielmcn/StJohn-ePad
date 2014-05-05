@@ -14,6 +14,16 @@
 <p>
     @Html.LabelFor(m => m.Name)
 </p>
+<p>
+    @Html.DisplayFor(model => model.EmailAddress)
+</p>
+<p>
+    @Html.DisplayFor(model => model.TelephoneNumber)
+</p>
+<p>
+    @Html.DisplayFor(model => model.CurrentRole)
+</p>
+
 
 @if (ViewBag.HasLocalPassword)
 {
@@ -24,7 +34,7 @@ else
     @Html.Partial("_SetPasswordPartial")
 }
 
-@section Scripts {
+@section scripts{
     @Scripts.Render("~/bundles/jqueryval")
-}
+    }
 
