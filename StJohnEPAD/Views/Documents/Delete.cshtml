@@ -1,0 +1,96 @@
+﻿@model StJohnEPAD.Models.Document
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Document</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentGUID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentGUID)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentLocation)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentLocation)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentValidFrom)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentValidFrom)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentNextReview)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentNextReview)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentSupersedes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentSupersedes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentSuperededBy)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentSuperededBy)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentVersion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentVersion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentPreviousVersion)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentPreviousVersion)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DocumentRestricted)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DocumentRestricted)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

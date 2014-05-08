@@ -1,0 +1,69 @@
+﻿@model IEnumerable<StJohnEPAD.Models.Document>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentValidFrom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentNextReview)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentVersion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DocumentRestricted)
+        </th>
+        <th>
+            Download
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentValidFrom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentNextReview)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentVersion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DocumentRestricted)
+        </td>
+        <td>
+            <a href="@item.DocumentLocation/@item.DocumentGUID">Download</a>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DocumentID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DocumentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DocumentID })
+        </td>
+    </tr>
+}
+
+</table>

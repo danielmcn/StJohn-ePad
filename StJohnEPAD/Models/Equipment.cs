@@ -30,6 +30,11 @@ namespace StJohnEPAD.Models
         public String EquipmentDescription { get; set; }
         [Display(Name = "Notes")]
         public String EquipmentNotes { get; set; }
+
+        //todo: send to file system instead
+        [NotMapped]
+        public HttpPostedFileBase ProfileImage { get; set; }
+        public String ImageFilename { get; set; }
         #endregion
 
         #region Equipment check in/out & responsibility details

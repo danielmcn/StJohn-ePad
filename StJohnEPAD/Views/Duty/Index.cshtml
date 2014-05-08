@@ -16,9 +16,9 @@
         <p>@Html.ActionLink("View all", "Index", "Duty", new { viewAll = "true" }, null)</p>
     }
     else
-	{
+    {
         <p>@Html.ActionLink("View outstanding", "Index", "Duty", new { viewAll = "false" }, null)</p>
-	}
+    }
 }
 
 <table id="DutyList">
@@ -39,16 +39,17 @@
             <th>
                 @Html.DisplayNameFor(model => model.DutyDescription)
             </th>
-            <th>
-                Availability
-            </th>
+            @if (ViewBag.ViewCurrentOrAllLink.Equals("currentMode"))
+            { 
+                <th>Availability</th>
+            }
 
-                   @{
-                       if (User.IsInRole("DutyAdmin") || User.IsInRole("Administrator"))
-                       {
-                           <th>Admin</th>
-                       }
-                    }
+            @{
+                if (User.IsInRole("DutyAdmin") || User.IsInRole("Administrator"))
+                {
+                    <th>Admin</th>
+                }
+            }
         </tr>
     </thead>
     <tbody>
@@ -70,18 +71,37 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.DutyDescription)
                 </td>
-                <td>
-                    No Response
-                </td>
-                    @{
+                @if (ViewBag.ViewCurrentOrAllLink.Equals("currentMode"))
+                {
+                    //todo: fix this
+                    var response = item.DutySignups.Where(x => x.UserId == WebSecurity.CurrentUserId && x.DutyID == item.DutyID).FirstOrDefault();
+                    StJohnEPAD.Models.DutyResponseValue? value = response.DutyAvailabilityResponse;
+                    switch (value)
+                    {
+                        case (StJohnEPAD.Models.DutyResponseValue.NoResponse):
+                            <td>No response</td>
+                            break;
+                        case (StJohnEPAD.Models.DutyResponseValue.Available):
+                            <td>Available</td>
+                            break;
+                        case (StJohnEPAD.Models.DutyResponseValue.Unavailable):
+                            <td>Unavailable</td>
+                            break;
+                        default:
+                            <td>No response</td>
+                            break;
+                    }
+
+                }
+                @{
                     if (User.IsInRole("DutyAdmin") || User.IsInRole("Administrator"))
                     {
-                        <td>
-                         @Html.ActionLink("Edit", "Edit", new { id = item.DutyID })
-                        | @Html.ActionLink("Delete", "Delete", new { id = item.DutyID })
-                        </td>
+                                <td>
+                                 @Html.ActionLink("Edit", "Edit", new { id = item.DutyID })
+                                | @Html.ActionLink("Delete", "Delete", new { id = item.DutyID })
+                                </td>
                     }
-                    }
+                }
             </tr>
         
         }

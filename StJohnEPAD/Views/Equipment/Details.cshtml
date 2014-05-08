@@ -1,0 +1,65 @@
+﻿@model StJohnEPAD.Models.Equipment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Equipment</legend>
+    <aside><p><img src="~/uploads/@Model.ImageFilename" height="100"></p></aside>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentNotes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentNotes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentLastCheck)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentLastCheck)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentNextCheck)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentNextCheck)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentCheckInDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentCheckInDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentCheckOutDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentCheckOutDate)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.EquipmentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

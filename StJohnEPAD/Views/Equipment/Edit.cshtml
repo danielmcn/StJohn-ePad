@@ -1,0 +1,86 @@
+﻿@model StJohnEPAD.Models.Equipment
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Equipment</legend>
+
+        @Html.HiddenFor(model => model.EquipmentID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EquipmentName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EquipmentName)
+            @Html.ValidationMessageFor(model => model.EquipmentName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EquipmentLastCheck)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EquipmentLastCheck)
+            @Html.ValidationMessageFor(model => model.EquipmentLastCheck)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EquipmentNextCheck)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EquipmentNextCheck)
+            @Html.ValidationMessageFor(model => model.EquipmentNextCheck)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EquipmentDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EquipmentDescription)
+            @Html.ValidationMessageFor(model => model.EquipmentDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EquipmentNotes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EquipmentNotes)
+            @Html.ValidationMessageFor(model => model.EquipmentNotes)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EquipmentCheckInDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EquipmentCheckInDate)
+            @Html.ValidationMessageFor(model => model.EquipmentCheckInDate)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EquipmentCheckOutDate)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EquipmentCheckOutDate)
+            @Html.ValidationMessageFor(model => model.EquipmentCheckOutDate)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

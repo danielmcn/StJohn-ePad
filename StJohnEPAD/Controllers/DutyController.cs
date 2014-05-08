@@ -31,8 +31,22 @@ namespace StJohnEPAD.Controllers
                 }
             ViewBag.ViewCurrentOrAllLink = "currentMode";
 
+            /*
+             * //todo: this might be workable (conditional include for duty singups)
+             * //http://blogs.msdn.com/b/alexj/archive/2009/10/13/tip-37-how-to-do-a-conditional-include.aspx
+            var dbquery = 
+               from duties in db.Duties 
+               select new { 
+                  duties,
+                  signups = from signup in duties.DutySignups
+                            where signup.UserId == WebSecurity.CurrentUserId && signup.DutyID == duties.DutyID
+                            select signup
+               };
+            var duties2 = dbquery.AsEnumerable().ToList();
+            var beep = 2;
+             */
+
             return View(db.Duties.Where(x => x.DutyDate >= DateTime.Now).Include(x => x.DutySignups).ToList());
-            //return View(db.Duties.ToList());
         }
 
         //
@@ -45,7 +59,125 @@ namespace StJohnEPAD.Controllers
             {
                 return HttpNotFound();
             }
-            return View(duty);
+            
+            
+            //Todo: put into a viewmodel?
+            List<String> drvList = new List<String>();
+            
+            List<SelectListItem> items = new List<SelectListItem>();
+            foreach (DutyResponseValue? drv in Enum.GetValues(typeof(DutyResponseValue)))
+            {
+                items.Add(new SelectListItem { Text = drv.ToString(), Value = drv.ToString() });
+                drvList.Add(drv.ToString());
+            }
+            //ViewBag.itemList = new SelectList(items);
+            ViewBag.itemList = items;
+            //ViewBag.itemList = drvList;
+
+            var response = db.DutyAvailabilty.Where(x => x.UserId == WebSecurity.CurrentUserId && x.DutyID == duty.DutyID).FirstOrDefault();
+            StJohnEPAD.Models.DutyResponseValue? value;
+            if(response != null)
+                value = response.DutyAvailabilityResponse;
+            else
+                 value = DutyResponseValue.NoResponse;
+
+            ViewBag.selectedItem = value.Value.ToString();
+
+
+            switch (value)
+            {
+                case (StJohnEPAD.Models.DutyResponseValue.NoResponse):
+                    //ViewBag.UserAvailability = "No Response";
+
+                    break;
+                case (StJohnEPAD.Models.DutyResponseValue.Available):
+                    //ViewBag.UserAvailability = "Available";
+                    break;
+                case (StJohnEPAD.Models.DutyResponseValue.Unavailable):
+                    //ViewBag.UserAvailability = "Unvailable";
+                    break;
+                default:
+                    //ViewBag.UserAvailability = "No Response";
+                    break;
+            }
+            
+            if(User.IsInRole("Administrator") || User.IsInRole("DutyAdmin"))
+            {
+                return View(db.Duties.Include(x => x.DutySignups).Where(x => x.DutyID == id).FirstOrDefault());
+            }
+            else
+            {
+                return View(duty);
+            }
+        }
+        
+        [HttpPost]
+        public ActionResult Details(FormCollection form, int id = 0)
+        {
+            Duty duty = db.Duties.Find(id);
+            if (duty == null)
+            {
+                return HttpNotFound();
+            }
+
+            //Add or update the availabilty
+
+            var result = Request.Form.GetValues(0);
+            DutyResponseValue? response;
+            if (result[0].ToString() == "Available")
+                response = DutyResponseValue.Available;
+            else if (result[0].ToString() == "Unavailable")
+                response = DutyResponseValue.Unavailable;
+            else
+                response = DutyResponseValue.NoResponse;
+                
+            //DutyResponseValue? response = (DutyResponseValue?)Enum.Parse(typeof(DutyResponseValue?), result[0].ToString());
+            // = (DutyResponseValue?)2;
+
+            var currAvailability = db.DutyAvailabilty.Where(x => x.DutyID == id && x.UserId == WebSecurity.CurrentUserId).FirstOrDefault();
+            
+            if (currAvailability != null)
+            {
+                //Already exists, update it
+                currAvailability.DutyAvailabilityResponse = response;
+                db.Entry(currAvailability).State = EntityState.Modified;
+                db.SaveChanges();
+                //save to db
+            }
+            else
+            {
+                //Create a new record
+                currAvailability = new DutyAvailability { DutyAvailabilityResponse = response, UserId = WebSecurity.CurrentUserId, DutyID = id };
+                db.DutyAvailabilty.Add(currAvailability);
+                db.SaveChanges();
+            }
+
+            //Todo: put into a viewmodel?
+            DutyResponseValue? value = currAvailability.DutyAvailabilityResponse;
+
+            switch (value)
+            {
+                case (StJohnEPAD.Models.DutyResponseValue.NoResponse):
+                    ViewBag.UserAvailability = "No Response";
+                    break;
+                case (StJohnEPAD.Models.DutyResponseValue.Available):
+                    ViewBag.UserAvailability = "Available";
+                    break;
+                case (StJohnEPAD.Models.DutyResponseValue.Unavailable):
+                    ViewBag.UserAvailability = "Unavailable";
+                    break;
+                default:
+                    ViewBag.UserAvailability = "No Response";
+                    break;
+            }
+            if (User.IsInRole("Administrator") || User.IsInRole("DutyAdmin"))
+            {
+                return View(db.Duties.Include(x => x.DutySignups).Where(x => x.DutyID == id).FirstOrDefault());
+            }
+            else
+            {
+                return View(duty);
+            }
         }
 
         //

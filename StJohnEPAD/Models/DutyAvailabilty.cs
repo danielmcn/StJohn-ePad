@@ -15,14 +15,22 @@ namespace StJohnEPAD.Models
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
         public int DutyAvailabilityID { get; set; }
 
-        [DisplayFormat(NullDisplayText = "No response")]
-        public bool? DutyAvailabilityResponse { get; set; }
+        [DisplayFormat(NullDisplayText = "Not answered")]
+        public DutyResponseValue? DutyAvailabilityResponse { get; set; }
 
+        [ForeignKey("Duty")]
         public int DutyID { get; set; }
         public virtual Duty Duty { get; set; }
-
+        
+        [ForeignKey("UserProfile")]
         public int UserId { get; set; }
         public virtual UserProfile UserProfile { get; set; }
 
+    }
+    public enum DutyResponseValue
+    {
+        NoResponse,
+        Available,
+        Unavailable,
     }
 }

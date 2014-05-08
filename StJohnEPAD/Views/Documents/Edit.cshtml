@@ -1,0 +1,118 @@
+﻿@model StJohnEPAD.Models.Document
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Document</legend>
+
+        @Html.HiddenFor(model => model.DocumentID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentName)
+            @Html.ValidationMessageFor(model => model.DocumentName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentGUID)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentGUID)
+            @Html.ValidationMessageFor(model => model.DocumentGUID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentLocation)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentLocation)
+            @Html.ValidationMessageFor(model => model.DocumentLocation)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentValidFrom)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentValidFrom)
+            @Html.ValidationMessageFor(model => model.DocumentValidFrom)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentNextReview)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentNextReview)
+            @Html.ValidationMessageFor(model => model.DocumentNextReview)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentDescription)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentDescription)
+            @Html.ValidationMessageFor(model => model.DocumentDescription)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentSupersedes)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentSupersedes)
+            @Html.ValidationMessageFor(model => model.DocumentSupersedes)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentSuperededBy)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentSuperededBy)
+            @Html.ValidationMessageFor(model => model.DocumentSuperededBy)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentVersion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentVersion)
+            @Html.ValidationMessageFor(model => model.DocumentVersion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentPreviousVersion)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentPreviousVersion)
+            @Html.ValidationMessageFor(model => model.DocumentPreviousVersion)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DocumentRestricted)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DocumentRestricted)
+            @Html.ValidationMessageFor(model => model.DocumentRestricted)
+        </div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

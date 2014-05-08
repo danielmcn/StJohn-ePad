@@ -1,0 +1,68 @@
+﻿@model StJohnEPAD.Models.Equipment
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>Equipment</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentLastCheck)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentLastCheck)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentNextCheck)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentNextCheck)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentDescription)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentDescription)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentNotes)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentNotes)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentCheckInDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentCheckInDate)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EquipmentCheckOutDate)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EquipmentCheckOutDate)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}
