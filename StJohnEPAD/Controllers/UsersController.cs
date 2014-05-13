@@ -11,6 +11,7 @@ using StJohnEPAD.DAL;
 
 namespace StJohnEPAD.Controllers
 {
+    [Authorize(Roles="Administrator")]
     public class UsersController : Controller
     {
         private SJAContext db = new SJAContext();
@@ -61,6 +62,11 @@ namespace StJohnEPAD.Controllers
             {
                 return HttpNotFound();
             }
+
+            var values = (from CurrentRoleEnum e in Enum.GetValues(typeof(CurrentRoleEnum))
+                    select new { ID = e, Name = e.ToString() }).ToList();
+            ViewBag.DropDown = new SelectList(values, "Id", "Name");
+
             return View(userprofile);
         }
 
@@ -75,6 +81,7 @@ namespace StJohnEPAD.Controllers
             {
                 //db.Entry(userprofile).State = EntityState.Modified;
                 var currentProfile = db.Users.FirstOrDefault(u => u.UserId == userprofile.UserId);
+                currentProfile.Name = userprofile.Name;
                 currentProfile.EmailAddress = userprofile.EmailAddress;
                 currentProfile.TelephoneNumber = userprofile.TelephoneNumber;
                 currentProfile.CurrentRole = userprofile.CurrentRole;

@@ -9,6 +9,8 @@ using StJohnEPAD.Models;
 using StJohnEPAD.ViewModels;
 using StJohnEPAD.DAL;
 using WebMatrix.WebData;
+using System.Data.Objects;
+using System.Data.Entity.Infrastructure;
 
 namespace StJohnEPAD.Controllers
 {
@@ -17,9 +19,20 @@ namespace StJohnEPAD.Controllers
     {
         private SJAContext db = new SJAContext();
 
-        //
-        // GET: /Duty/
-
+        /// <summary>
+        /// GET: /Duty/
+        /// Return a list of the duties in the system, either those in the future
+        /// or all of them depending on whether the viewAll parameter is used
+        /// </summary>
+        /// <param name="viewAll">
+        ///     Indicate if we want to view all duties, not just those upcoming
+        ///     This feature will only work if the user has suitable permissions to do so
+        /// </param>
+        /// <returns>
+        ///     A View containing a List of Duty objects, where there duty date exceed the current
+        ///     date
+        ///     If viewAll == true, and user == admin, we will return ALL duties in the system
+        /// </returns>
         public ActionResult Index(string viewAll)
         {
             if (User.IsInRole("Administrator") || User.IsInRole("DutyAdmin"))
@@ -27,7 +40,7 @@ namespace StJohnEPAD.Controllers
                 if (viewAll.Equals("true"))
                 {
                     ViewBag.ViewCurrentOrAllLink = "allMode";
-                    return View(db.Duties.ToList());
+                    return View(db.Duties.ToList().OrderBy(x=>x.DutyDate));
                 }
             ViewBag.ViewCurrentOrAllLink = "currentMode";
 
@@ -46,7 +59,7 @@ namespace StJohnEPAD.Controllers
             var beep = 2;
              */
 
-            return View(db.Duties.Where(x => x.DutyDate >= DateTime.Now).Include(x => x.DutySignups).ToList());
+            return View(db.Duties.Where(x => EntityFunctions.TruncateTime(x.DutyDate) >= EntityFunctions.TruncateTime(DateTime.Now)).Include(x => x.DutySignups).OrderBy(x=> x.DutyDate).ToList());
         }
 
         //
@@ -87,17 +100,17 @@ namespace StJohnEPAD.Controllers
             switch (value)
             {
                 case (StJohnEPAD.Models.DutyResponseValue.NoResponse):
-                    //ViewBag.UserAvailability = "No Response";
+                    ViewBag.UserAvailability = "No Response";
 
                     break;
                 case (StJohnEPAD.Models.DutyResponseValue.Available):
-                    //ViewBag.UserAvailability = "Available";
+                    ViewBag.UserAvailability = "Available";
                     break;
                 case (StJohnEPAD.Models.DutyResponseValue.Unavailable):
-                    //ViewBag.UserAvailability = "Unvailable";
+                    ViewBag.UserAvailability = "Unvailable";
                     break;
                 default:
-                    //ViewBag.UserAvailability = "No Response";
+                    ViewBag.UserAvailability = "No Response";
                     break;
             }
             
@@ -226,14 +239,74 @@ namespace StJohnEPAD.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Duty duty)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(duty).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    db.Entry(duty).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                return View(duty);
             }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                var entry = ex.Entries.Single();
+                var clientValues = (Duty)entry.Entity;
+                var databaseValues = (Duty)entry.GetDatabaseValues().ToObject();
+
+                if (databaseValues.DutyName != clientValues.DutyName)
+                    ModelState.AddModelError("DutyName", "Current value: "
+                        + databaseValues.DutyName);
+                if (databaseValues.DutyDate != clientValues.DutyDate)
+                    ModelState.AddModelError("DutyDate", "Current value: "
+                        + databaseValues.DutyDate);
+                if (databaseValues.DutyStartTime != clientValues.DutyStartTime)
+                    ModelState.AddModelError("DutyStartTime", "Current value: "
+                        + databaseValues.DutyStartTime);
+                if (databaseValues.DutyEndTime != clientValues.DutyEndTime)
+                    ModelState.AddModelError("DutyEndTime", "Current value: "
+                        + databaseValues.DutyEndTime);
+                if (databaseValues.DutyLocation != clientValues.DutyLocation)
+                    ModelState.AddModelError("DutyLocation", "Current value: "
+                        + databaseValues.DutyLocation);
+                if (databaseValues.DutyDescription != clientValues.DutyDescription)
+                    ModelState.AddModelError("DutyDescription", "Current value: "
+                        + databaseValues.DutyDescription);
+                if (databaseValues.DutyAdditionalNotes != clientValues.DutyAdditionalNotes)
+                    ModelState.AddModelError("DutyAdditionalNotes", "Current value: "
+                        + databaseValues.DutyAdditionalNotes);
+                if (databaseValues.DutyOrganiser != clientValues.DutyOrganiser)
+                    ModelState.AddModelError("DutyOrganiser", "Current value: "
+                        + databaseValues.DutyOrganiser);
+                if (databaseValues.DutyOrganiserPhoneNumber != clientValues.DutyOrganiserPhoneNumber)
+                    ModelState.AddModelError("DutyOrganiserPhoneNumber", "Current value: "
+                        + databaseValues.DutyOrganiserPhoneNumber);
+                if (databaseValues.DutyOrganiserEmailAddress != clientValues.DutyOrganiserEmailAddress)
+                    ModelState.AddModelError("DutyOrganiserEmailAddress", "Current value: "
+                        + databaseValues.DutyOrganiserEmailAddress);
+                if (databaseValues.DutyLocationLong != clientValues.DutyLocationLong)
+                    ModelState.AddModelError("DutyLocationLong", "Current value: "
+                        + databaseValues.DutyLocationLong);
+                if (databaseValues.DutyLocationLat != clientValues.DutyLocationLat)
+                    ModelState.AddModelError("DutyLocationLat", "Current value: "
+                        + databaseValues.DutyLocationLat);
+                ModelState.AddModelError(string.Empty, "The record you attempted to edit "
+                    + "was modified by another user after you got the original value. The "
+                    + "edit operation was canceled and the current values in the database "
+                    + "have been displayed. If you still want to edit this record, click "
+                    + "the Save button again. Otherwise click the Back to List hyperlink.");
+                duty.RowVersion = databaseValues.RowVersion;
+            }
+            catch (DataException /*dataException*/)
+            {
+                
+                ModelState.AddModelError(string.Empty, "Unable to save changes. Try again, and if the problem persists contact your system administrator.");
+            }
+
             return View(duty);
         }
+
 
         //
         // GET: /Duty/Delete/5

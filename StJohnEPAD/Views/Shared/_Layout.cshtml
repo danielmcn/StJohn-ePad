@@ -7,6 +7,7 @@
         <meta name="viewport" content="width=device-width" />
         @Styles.Render("~/Content/css")
         @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
     </head>
     <body>
         <header>
@@ -27,14 +28,14 @@
                     <nav>
                         <ul id="menu">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                             <!--Admin tools-->
                             @if(User.IsInRole("Administrator"))
                             {
-                                <li>@Html.ActionLink("Admin", "Index", "Admin")</li>
                                 <li>@Html.ActionLink("Stats", "Index", "Stats")</li>
                                 <li>@Html.ActionLink("Equipment", "Index", "Equipment")</li>
+                                <li>@Html.ActionLink("Documents", "Index", "Documents")</li>
+                                <li>@Html.ActionLink("Members", "Index", "Users")</li>
                             }
                             <!--- login / logout section -->
                             @if (Request.IsAuthenticated) {
@@ -71,7 +72,7 @@
             </div>
         </footer>
 
-        @Scripts.Render("~/bundles/jquery")
+        
         @RenderSection("scripts", required: false)
     </body>
 </html>

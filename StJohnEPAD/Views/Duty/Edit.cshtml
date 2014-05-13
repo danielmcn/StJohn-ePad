@@ -1,10 +1,13 @@
 ﻿@model StJohnEPAD.Models.Duty
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit Duty: " + Model.DutyName;
 }
 
-<h2>Edit</h2>
+<h2>@ViewBag.Title</h2>
+<p>
+
+</p>
 
 @using (Html.BeginForm()) {
     @Html.AntiForgeryToken()
@@ -14,6 +17,7 @@
         <legend>Duty</legend>
 
         @Html.HiddenFor(model => model.DutyID)
+        @Html.HiddenFor(model => model.RowVersion)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.DutyName)
@@ -27,7 +31,8 @@
             @Html.LabelFor(model => model.DutyDate)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.DutyDate)
+            <!--- Change to TextBoxFor to get DatePicker-->
+            @Html.EditorFor(model => model.DutyDate, new { @class = "date", type = "date", id = "date" })
             @Html.ValidationMessageFor(model => model.DutyDate)
         </div>
 
@@ -35,7 +40,7 @@
             @Html.LabelFor(model => model.DutyStartTime)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.DutyStartTime)
+            @Html.EditorFor(model => model.DutyStartTime , new { type = "time" })
             @Html.ValidationMessageFor(model => model.DutyStartTime)
         </div>
 
@@ -43,7 +48,7 @@
             @Html.LabelFor(model => model.DutyEndTime)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.DutyEndTime)
+            @Html.EditorFor(model => model.DutyEndTime, new { id = "endTime" })
             @Html.ValidationMessageFor(model => model.DutyEndTime)
         </div>
 
@@ -67,7 +72,7 @@
             @Html.LabelFor(model => model.DutyAdditionalNotes)
         </div>
         <div class="editor-field">
-            @Html.EditorFor(model => model.DutyAdditionalNotes)
+            @Html.TextAreaFor(model => model.DutyAdditionalNotes)
             @Html.ValidationMessageFor(model => model.DutyAdditionalNotes)
         </div>
 
@@ -94,6 +99,23 @@
             @Html.EditorFor(model => model.DutyOrganiserEmailAddress)
             @Html.ValidationMessageFor(model => model.DutyOrganiserEmailAddress)
         </div>
+        <h3>
+            If the map is returning an incorrect location, add specific co-ordinates:
+        </h3>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyLocationLat)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyLocationLat)
+            @Html.ValidationMessageFor(model => model.DutyLocationLat)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.DutyLocationLong)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.DutyLocationLong)
+            @Html.ValidationMessageFor(model => model.DutyLocationLong)
+        </div>
 
 
         <p>
@@ -108,4 +130,18 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <script src="@Url.Content("~/Scripts/jquery-ui-1.8.20.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Content/themes/base/jquery-ui.css")" type="text/css"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".date").datepicker();
+            //$("#date").datepicker();
+        });
+    </script>
+
 }

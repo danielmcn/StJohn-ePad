@@ -48,7 +48,7 @@ namespace StJohnEPAD.Models
         #endregion
 
         #region Organiser details
-        [Display(Name = "Orgraniser")]
+        [Display(Name = "Organiser")]
         public string DutyOrganiser { get; set; }
         [Display(Name = "Organiser phone")]
         public string DutyOrganiserPhoneNumber { get; set; }
@@ -69,6 +69,9 @@ namespace StJohnEPAD.Models
         //Navigation propeties
         public virtual PostDutyReport PostDutyReport { get; set; }
         public virtual ICollection<DutyAvailability> DutySignups { get; set; }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
 
     }
 }

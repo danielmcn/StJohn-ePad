@@ -75,7 +75,11 @@
                 {
                     //todo: fix this
                     var response = item.DutySignups.Where(x => x.UserId == WebSecurity.CurrentUserId && x.DutyID == item.DutyID).FirstOrDefault();
-                    StJohnEPAD.Models.DutyResponseValue? value = response.DutyAvailabilityResponse;
+                    StJohnEPAD.Models.DutyResponseValue? value = null;
+                    if (response != null)
+                    {
+                        value = response.DutyAvailabilityResponse;
+                    }
                     switch (value)
                     {
                         case (StJohnEPAD.Models.DutyResponseValue.NoResponse):
@@ -122,6 +126,7 @@
                 {
                     paging: true,
                     searching: true,
+                    "aaSorting": []
                 });
         } );
     </script>

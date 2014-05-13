@@ -80,10 +80,20 @@ namespace StJohnEPAD.Controllers
                 // Attempt to register the user
                 try
                 {
-                    WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new { Name = model.Name });
-                    //Todo: Create a "success" message for this
-                    //WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    using (SJAContext ctx = new SJAContext())
+                    {
+                        WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new { Name = model.Name });
+                        //Todo: Create a "success" message for this
+                        //WebSecurity.Login(model.UserName, model.Password);
+                        var createdUserId = WebSecurity.GetUserId(model.UserName);
+
+                        var user = ctx.Users.Find(createdUserId);
+                        user.EmailAddress = model.EmailAddress;
+                        ctx.SaveChanges();
+
+                        return RedirectToAction("Details", "Users", new { id = createdUserId });
+                    }
+
                 }
                 catch (MembershipCreateUserException e)
                 {

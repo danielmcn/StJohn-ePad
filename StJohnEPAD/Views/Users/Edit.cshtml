@@ -26,7 +26,8 @@
             @Html.LabelFor(model => model.Name)
         </div>
         <div class="editor-field">
-            @Html.DisplayFor(model => model.Name)
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
         </div>
 
         <div class="editor-label">
@@ -50,8 +51,8 @@
         </div>
         <div class="editor-field">
             <!--TODO: Drop down list-->
-            @Html.EditorFor(model => model.CurrentRole)
-            @Html.ValidationMessageFor(model => model.CurrentRole)
+            @Html.DropDownListFor(model => model.CurrentRole, (SelectList)ViewBag.DropDown)
+
         </div>
 
         <p>

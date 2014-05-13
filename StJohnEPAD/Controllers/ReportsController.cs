@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace StJohnEPAD.Controllers
 {
+    [Authorize(Roles="Administrator")]
     public class ReportsController : Controller
     {
         //

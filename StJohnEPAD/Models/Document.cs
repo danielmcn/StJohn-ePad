@@ -64,5 +64,8 @@ namespace StJohnEPAD.Models
         [Display(Name = "Restricted?")]
         public bool? DocumentRestricted { get; set; }
         #endregion
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

@@ -26,6 +26,9 @@ namespace StJohnEPAD.Models
         public int UserId { get; set; }
         public virtual UserProfile UserProfile { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
     }
     public enum DutyResponseValue
     {

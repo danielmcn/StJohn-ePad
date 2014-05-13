@@ -1,4 +1,4 @@
-﻿//@model StJohnEPAD.Models.Duty
+﻿@model StJohnEPAD.Models.Duty
 
 @{
     ViewBag.Title = "Details";
@@ -69,9 +69,20 @@
     </div>
     <div class="display-field">
         <form method="post">
-            <select name="MyAvailability" id="MyAvailability">
-                <option value="@StJohnEPAD.Models.DutyResponseValue.Available">Available</option>
-                <option value="@StJohnEPAD.Models.DutyResponseValue.Unavailable">Unavailable</option>
+            <select name="MyAvailability">
+                @{
+                    if(ViewBag.UserAvailability == "Available")
+                    {
+                        //Fallbock incase JQuery fails (likely!)
+                        <option value="@StJohnEPAD.Models.DutyResponseValue.Available" selected="selected">Available</option>
+                        <option value="@StJohnEPAD.Models.DutyResponseValue.Unavailable">Unavailable</option>
+                    }
+                    else
+                    {
+                        <option value="@StJohnEPAD.Models.DutyResponseValue.Available">Available</option>
+                        <option value="@StJohnEPAD.Models.DutyResponseValue.Unavailable" selected="selected">Unavailable</option>
+                    }
+                }
             </select>
             <input type="submit" value="Change" />
         </form>   
@@ -227,19 +238,5 @@
         $('#SignupsHeader').click(function () {
             $('#SignupsFieldset').slideToggle('fast');
         });
-    </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            var boop = (String)@ViewBag.UserAvailability;
-            //var boop = "Unavailable";
-            if(boop == "Available")
-            {
-                $("#MyAvailability").val("Available");
-            }
-            else
-            {
-                $("#MyAvailability").val("Unavailable");
-            }})
-                  
     </script>
 }

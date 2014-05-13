@@ -70,6 +70,9 @@ namespace StJohnEPAD.Models
         [Display(Name = "Current Role")]
         public CurrentRoleEnum CurrentRole { get; set; }
 
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
+
         /*
         public DateTime? JoinDate { get; set; }
         public DateTime? TFADate { get; set; }
