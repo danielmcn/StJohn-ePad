@@ -48,6 +48,9 @@ namespace StJohnEPAD.Models
         [Display(Name = "E-Mail")]
         public string EmailAddress { get; set; }
 
+        [Display(Name = "Recieve e-Mails?")]
+        public bool? ReceiveEmails { get; set; }
+
         /// <summary>
         /// Phone number input.  Regex allows 11 digit numbers, starting 07.  We only want mobiles for our text service to function.
         /// </summary>

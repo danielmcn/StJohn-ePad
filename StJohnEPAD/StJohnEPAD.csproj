@@ -154,6 +154,12 @@
       <Private>True</Private>
       <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="zxing">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation">
+      <HintPath>..\packages\ZXing.Net.0.14.0.1\lib\net40\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AuthConfig.cs" />
@@ -163,6 +169,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DocumentsController.cs" />
+    <Compile Include="Controllers\DutyReportController.cs" />
     <Compile Include="Controllers\EquipmentController.cs" />
     <Compile Include="Controllers\ErrorHandlingController.cs" />
     <Compile Include="Controllers\MyDutySignupController.cs" />
@@ -354,6 +361,12 @@
     <Content Include="Views\Documents\Edit.cshtml" />
     <Content Include="Views\Documents\Delete.cshtml" />
     <Content Include="Views\Reports\CoverCalculator.cshtml" />
+    <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\DutyReport\Index.cshtml" />
+    <Content Include="Views\DutyReport\Details.cshtml" />
+    <Content Include="Views\DutyReport\Create.cshtml" />
+    <Content Include="Views\DutyReport\Edit.cshtml" />
+    <Content Include="Views\DutyReport\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\equipment\" />

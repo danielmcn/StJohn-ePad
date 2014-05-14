@@ -44,16 +44,14 @@ namespace StJohnEPAD.Models
         #endregion
 
         #region Equipment check in/out & responsibility details
-        [ForeignKey("UserProfile")]
         [Display(Name = "Checked in by")]
-        public int? EquipmentCheckInBy { get; set; }
+        public UserProfile EquipmentCheckInBy { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "Last checked out date")]
         public DateTime? EquipmentCheckInDate { get; set; }
 
-        [ForeignKey("UserProfile")]
         [Display(Name = "Checked out by")]
-        public int? EquipmentCheckOutBy { get; set; }
+        public UserProfile EquipmentCheckOutBy { get; set; }
         [DataType(DataType.Date)]
         [Display(Name = "Last checked out date")]
         public DateTime? EquipmentCheckOutDate { get; set; }
@@ -62,6 +60,5 @@ namespace StJohnEPAD.Models
         [Timestamp]
         public byte[] RowVersion { get; set; }
 
-        public virtual UserProfile UserProfile;
     }
 }

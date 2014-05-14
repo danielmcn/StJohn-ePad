@@ -12,10 +12,12 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Data.Entity.Infrastructure;
+using ZXing;
+using ZXing.Common;
 
 namespace StJohnEPAD.Controllers
 {
-    [Authorize(Roles="Administrator")]
+    [Authorize(Roles = "Administrator")]
     public class EquipmentController : Controller
     {
         private SJAContext db = new SJAContext();
@@ -26,7 +28,7 @@ namespace StJohnEPAD.Controllers
 
         public ActionResult Index()
         {
-            if(db.Equipment == null)
+            if (db.Equipment == null)
                 return View();
             return View(db.Equipment.ToList());
             //return View(db.Equipment.ToList());
@@ -42,6 +44,7 @@ namespace StJohnEPAD.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.QRImage = GenerateQRCodeLink(id);
             return View(equipment);
         }
 
@@ -63,7 +66,7 @@ namespace StJohnEPAD.Controllers
             if (ModelState.IsValid)
             {
                 if (image != null)
-                    if(image.ContentLength > 0)
+                    if (image.ContentLength > 0)
                     {
                         //var fileName1 = Path.GetFileName(image.FileName);
                         var extension = Path.GetExtension(image.FileName);
@@ -200,6 +203,37 @@ namespace StJohnEPAD.Controllers
         {
             db.Dispose();
             base.Dispose(disposing);
+        }
+
+        /// <summary>
+        /// Generate a QR code to place on our equipment to allow
+        /// easy lookup through our application as a link
+        /// Uses ZXing.net library
+        /// </summary>
+        /// <param name="equipmentId">The ID to link to</param>
+        private MvcHtmlString GenerateQRCodeLink(int equipmentId)
+        {
+            
+            var currentHost = System.Web.HttpContext.Current.Request.Url.Host;
+            var currentController = this.ControllerContext.RouteData.Values["controller"].ToString();
+            var qrValue = "http://" + currentHost + "/" + currentController + "/Details/" + equipmentId.ToString();
+            var barcodeWriter = new BarcodeWriter
+            {
+                Format = BarcodeFormat.QR_CODE
+            };
+
+            using (var bitmap = barcodeWriter.Write(qrValue))
+            using (var stream = new MemoryStream())
+            {
+                bitmap.Save(stream, ImageFormat.Gif);
+
+                var img = new TagBuilder("img");
+                img.MergeAttribute("alt", "A QR code image with a link to this page");
+                img.Attributes.Add("src", String.Format("data:image/gif;base64,{0}",
+                    Convert.ToBase64String(stream.ToArray())));
+
+                return MvcHtmlString.Create(img.ToString(TagRenderMode.SelfClosing));
+            }
         }
     }
 }

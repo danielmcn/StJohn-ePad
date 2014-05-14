@@ -11,6 +11,8 @@ using WebMatrix.WebData;
 using StJohnEPAD.Filters;
 using StJohnEPAD.Models;
 using StJohnEPAD.DAL;
+using System.Data.Entity.Infrastructure;
+using System.Data;
 
 namespace StJohnEPAD.Controllers
 {
@@ -88,7 +90,10 @@ namespace StJohnEPAD.Controllers
                         var createdUserId = WebSecurity.GetUserId(model.UserName);
 
                         var user = ctx.Users.Find(createdUserId);
+                        //let's keep our custom fields seperate from any simplemembership commands
+
                         user.EmailAddress = model.EmailAddress;
+
                         ctx.SaveChanges();
 
                         return RedirectToAction("Details", "Users", new { id = createdUserId });
@@ -119,7 +124,7 @@ namespace StJohnEPAD.Controllers
             if (ownerAccount == User.Identity.Name)
             {
                 // Use a transaction to prevent the user from deleting their last login credential
-                using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Serializable }))
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = System.Transactions.IsolationLevel.Serializable }))
                 {
                     bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
                     if (hasLocalAccount || OAuthWebSecurity.GetAccountsFromUserName(User.Identity.Name).Count > 1)
@@ -211,6 +216,62 @@ namespace StJohnEPAD.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+
+        public ActionResult Details()
+        {
+            //No need to check if exists as we have to be logged in
+            using (SJAContext ctx = new SJAContext())
+            {
+                return View(ctx.Users.Find(WebSecurity.CurrentUserId));
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Details(UserProfile model)
+        {
+            using(SJAContext ctx = new SJAContext())
+            {
+                
+                try
+                {
+                    UserProfile currentProfile = ctx.Users.Find(WebSecurity.CurrentUserId);
+                    currentProfile.EmailAddress = model.EmailAddress;
+                    currentProfile.ReceiveEmails = model.ReceiveEmails;
+                    currentProfile.TelephoneNumber = model.TelephoneNumber;
+
+                    ctx.SaveChanges();
+
+                    ViewBag.StatusMessage = "Saved!";
+
+                    return View(ctx.Users.Find(WebSecurity.CurrentUserId));
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    var entry = ex.Entries.Single();
+                    var clientValues = (UserProfile)entry.Entity;
+                    var databaseValues = (UserProfile)entry.GetDatabaseValues().ToObject();
+
+                    if (databaseValues.EmailAddress != clientValues.EmailAddress)
+                        ModelState.AddModelError("EmailAddress", "Current value: "
+                            + databaseValues.EmailAddress);
+                    if (databaseValues.ReceiveEmails != clientValues.ReceiveEmails)
+                        ModelState.AddModelError("ReceiveEmails", "Current value: "
+                            + databaseValues.ReceiveEmails);
+                    if (databaseValues.TelephoneNumber != clientValues.TelephoneNumber)
+                        ModelState.AddModelError("TelephoneNumber", "Current value: "
+                            + databaseValues.TelephoneNumber);
+                }
+                catch (DataException /*dataException*/)
+                {
+
+                    ModelState.AddModelError(string.Empty, "Unable to save changes. Try again, and if the problem persists contact your system administrator.");
+                }
+
+                return View((UserProfile)ctx.Users.Find(WebSecurity.CurrentUserId));
+            }
         }
 
         //

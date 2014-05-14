@@ -21,7 +21,7 @@
                     <section id="login">
                         @if (Request.IsAuthenticated) {
                             <text>
-                                Logged in as @Html.ActionLink(User.Identity.Name, "Manage", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })
+                                Logged in as @Html.ActionLink(User.Identity.Name, "Details", "Account", routeValues: null, htmlAttributes: new { @class = "username", title = "Manage" })
                             </text>
                         }
                     </section>

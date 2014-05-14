@@ -103,3 +103,9 @@ C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Debug\StJohnEPAD.dll
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Debug\StJohnEPAD.pdb
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Debug\StJohnEPAD.Migrations.Initial.resources
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Debug\StJohnEPAD.csproj.GenerateResource.Cache
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.dll
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.presentation.dll
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.pdb
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.xml
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.presentation.pdb
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.presentation.xml
