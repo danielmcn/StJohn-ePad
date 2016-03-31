@@ -1,0 +1,100 @@
+﻿@model StJohnEPAD.Models.PostDutyReport
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2 class="StJohnHeader">Details</h2>
+
+<fieldset>
+    <legend>PostDutyReport</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRFNumbers)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRFNumbers)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AnyOtherComments)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AnyOtherComments)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastUpdated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastUpdated) by @Html.DisplayFor(model => model.UserProfile.Name)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.DutyID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<fieldset style="border:dashed; padding:10px;">
+    <h2>Confirmed Attendees</h2>
+    <p></p>
+    <legend>Records</legend>
+    @if (Model.Attendees != null)
+    { 
+        <table id="Attendees">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Hours</th>
+                <th>Notes</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var item in Model.Attendees)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(tr => item.UserProfile.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(tr => item.UserProfile.CurrentRole)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(tr => item.DutyHourAmount)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(tr => item.DutyHourComments)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Select", "Index", new { courseID = item.DutyHourID })
+                    </td>
+                </tr> 
+            }
+            </tbody>
+
+        </table> 
+    }
+</fieldset>
+
+
+@section scripts{
+    <!-- Datatables Copyright (c) 2008-2013 SpryMedia Limited
+    http://datatables.net -->
+
+    <link href="@Url.Content("~/Content/themes/base/minified/jquery.dataTables.min.css")" rel="stylesheet" type="text/css" />
+    <!--<script type="text/javascript" src="~/Scripts/jquery.dataTables.js"></script>-->
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $('#Attendees').dataTable(
+                {
+                    paging: true,
+                    searching: true,
+                });
+        } );
+    </script>
+    }

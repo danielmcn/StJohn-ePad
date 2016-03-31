@@ -1,0 +1,55 @@
+﻿@model IEnumerable<StJohnEPAD.Models.ConfirmedDutyHours>
+
+@{
+    ViewBag.Title = "Confirmed Duty Hours by Member";
+}
+
+<h2 class="StJohnHeader">@ViewBag.TItle</h2>
+<p>
+
+</p>
+
+<table id="DutyByUser">
+    <thead>
+        <tr>
+            <th>Duty ID</th>
+            <th>Duty Name</th>
+            <th>Hours</th>
+            <th>Comments</th>
+        </tr>
+    </thead>
+    <tbody>
+@{
+    foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.DutyID</td>
+            <td>@item.Duty.DutyName</td>
+            <td>@item.DutyHourAmount</td>
+            <td>@item.DutyHourComments</td>
+        </tr>
+            
+    }
+}
+        </tbody>
+    </table>
+
+@section scripts{
+    <!-- Datatables Copyright (c) 2008-2013 SpryMedia Limited
+    http://datatables.net -->
+
+    <link href="@Url.Content("~/Content/themes/base/minified/jquery.dataTables.min.css")" rel="stylesheet" type="text/css" />
+    <!--<script type="text/javascript" src="~/Scripts/jquery.dataTables.js"></script>-->
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $('#DutyByUser').dataTable(
+                {
+                    paging: true,
+                    searching: true,
+                    "aaSorting": []
+                });
+        } );
+    </script>
+    }

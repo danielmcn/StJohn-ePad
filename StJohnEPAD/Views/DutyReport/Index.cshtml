@@ -1,0 +1,51 @@
+﻿@model IEnumerable<StJohnEPAD.Models.PostDutyReport>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.PRFNumbers)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AnyOtherComments)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastUpdated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UserProfile.UserName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.PRFNumbers)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AnyOtherComments)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastUpdated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserProfile.UserName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.DutyID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.DutyID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.DutyID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -109,3 +109,5 @@ C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.pdb
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.xml
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.presentation.pdb
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.presentation.xml
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\itextsharp.dll
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\itextsharp.xml

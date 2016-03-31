@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.0\lib\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -199,6 +202,8 @@
     <Compile Include="Models\PostDutyReport.cs" />
     <Compile Include="Models\TrainingRecord.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\StatsViewModels.cs" />
+    <Compile Include="ViewModels\DutyReportViewModel.cs" />
     <Compile Include="ViewModels\DutyWithAvailabilityViewModel.cs" />
     <Compile Include="ViewModels\SingleUserTrainingRecordViewModel.cs" />
     <Compile Include="ViewModels\DutySignupViewModel.cs" />
@@ -332,16 +337,11 @@
     <Content Include="Views\Duty\Edit.cshtml" />
     <Content Include="Views\Duty\Delete.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
-    <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\DutySignup\Index.cshtml" />
     <Content Include="Views\DutySignup\Details.cshtml" />
     <Content Include="Views\DutySignup\Create.cshtml" />
     <Content Include="Views\DutySignup\Edit.cshtml" />
     <Content Include="Views\DutySignup\Delete.cshtml" />
-    <Content Include="Views\Stats\Error.cshtml" />
-    <Content Include="Views\Stats\Index.cshtml" />
-    <Content Include="Views\Stats\HoursByMember.cshtml" />
-    <Content Include="Views\Stats\HoursByDivision.cshtml" />
     <Content Include="Views\MyDutySignup\Create.cshtml" />
     <Content Include="Views\MyDutySignup\Delete.cshtml" />
     <Content Include="Views\MyDutySignup\Details.cshtml" />
@@ -367,6 +367,11 @@
     <Content Include="Views\DutyReport\Create.cshtml" />
     <Content Include="Views\DutyReport\Edit.cshtml" />
     <Content Include="Views\DutyReport\Delete.cshtml" />
+    <Content Include="Views\Reports\DutyPerUser.cshtml" />
+    <Content Include="Views\Reports\HoursPerDuty.cshtml" />
+    <Content Include="Views\Reports\Index.cshtml" />
+    <Content Include="Views\Reports\Error.cshtml" />
+    <Content Include="Views\Reports\DutyPerAllUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\uploads\equipment\" />

@@ -11,10 +11,7 @@ C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\EntityFramework.dll
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\Microsoft.Web.Infrastructure.dll
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\Microsoft.Web.WebPages.OAuth.dll
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\Newtonsoft.Json.dll
-C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Net.Http.Formatting.dll
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Web.Helpers.dll
-C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Web.Http.dll
-C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Web.Http.WebHost.dll
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Web.Mvc.dll
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Web.Optimization.dll
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Web.Razor.dll
@@ -26,10 +23,7 @@ C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\WebMatrix.Data.dll
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\WebMatrix.WebData.dll
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\EntityFramework.xml
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\Newtonsoft.Json.xml
-C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Net.Http.Formatting.xml
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Web.Helpers.xml
-C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Web.Http.xml
-C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Web.Http.WebHost.xml
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Web.Mvc.xml
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Web.Razor.xml
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\System.Web.WebPages.xml
@@ -49,3 +43,11 @@ C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Release\StJohnEPAD.M
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Release\StJohnEPAD.csproj.GenerateResource.Cache
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Release\StJohnEPAD.dll
 C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\obj\Release\StJohnEPAD.pdb
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\itextsharp.dll
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.dll
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.presentation.dll
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\itextsharp.xml
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.pdb
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.xml
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.presentation.pdb
+C:\Users\Daniel\SkyDrive\Projects\StJohnEPAD\StJohnEPAD\bin\zxing.presentation.xml

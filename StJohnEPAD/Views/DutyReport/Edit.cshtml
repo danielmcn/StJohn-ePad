@@ -1,0 +1,87 @@
+﻿@model StJohnEPAD.Models.PostDutyReport
+
+@{
+    ViewBag.Title = "Edit Report";
+}
+
+<h2 class="StJohnHeader">Edit</h2>
+
+<h3>@ViewBag.Message</h3>
+<p>
+
+</p>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>PostDutyReport</legend>
+
+        @Html.HiddenFor(model => model.DutyID)
+        @Html.HiddenFor(model => model.LastUpdated)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PRFNumbers)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.PRFNumbers)
+            @Html.ValidationMessageFor(model => model.PRFNumbers)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.AnyOtherComments)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.AnyOtherComments)
+            @Html.ValidationMessageFor(model => model.AnyOtherComments)
+        </div>
+
+        @if(ViewBag.Message == null || ViewBag.Message == "")
+        {
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Rank</th>
+                    <th>Hours</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @{
+                    var list = ViewBag.allProfiles;
+                    List<StJohnEPAD.Models.UserProfile> profiles = ViewBag.extraUsers;
+                    foreach (StJohnEPAD.Models.ConfirmedDutyHours cdh in list)
+                    {
+                        <tr>
+                            @Html.HiddenFor(x => cdh.UserId)
+                            <td>@profiles.Find(x=> cdh.UserId == x.UserId).Name</td>
+                            <td>@profiles.Find(x=> cdh.UserId == x.UserId).CurrentRole</td>
+                            <td>@Html.EditorFor(x => cdh.DutyHourAmount,new{@style="width:@'10px@'"})</td>
+                            <td>@Html.EditorFor(x => cdh.DutyHourComments)</td>
+                        </tr>
+                    }
+                }
+            </tbody>
+
+        </table>
+        }
+            
+        <p>
+            <input type="submit" value="Save" />
+        </p>    
+    
+    </fieldset>
+
+    
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

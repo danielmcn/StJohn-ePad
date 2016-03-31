@@ -1,0 +1,97 @@
+﻿@model IEnumerable<StJohnEPAD.ViewModels.HoursPerUserViewModel>
+
+@{
+    ViewBag.Title = "Duty Breakdown by User";
+}
+
+<h2 class="StJohnHeader">@ViewBag.TItle</h2>
+<p>
+
+</p>
+
+<table id="DutyPerAllUsers">
+    <thead>
+        <tr>
+            <th>UserID</th>
+            <th>Name</th>
+            <th>Hours</th>
+            <th>Duties</th>
+        </tr>
+    </thead>
+    <tbody>
+@{
+    foreach(var item in Model)
+    {
+        <tr>
+            <td>@item.UserId</td>
+            <td>@item.UserName</td>
+            <td>@item.Hours</td>
+            <td>@item.Duties</td>
+        </tr>
+            
+    }
+}
+        </tbody>
+    </table>
+
+<div id="chartArea"></div>
+
+
+
+@section scripts{
+    <!-- Datatables Copyright (c) 2008-2013 SpryMedia Limited
+    http://datatables.net -->
+
+    <link href="@Url.Content("~/Content/themes/base/minified/jquery.dataTables.min.css")" rel="stylesheet" type="text/css" />
+    <!--<script type="text/javascript" src="~/Scripts/jquery.dataTables.js"></script>-->
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $('#DutyPerAllUsers').dataTable(
+                {
+                    paging: true,
+                    searching: true,
+                    "aaSorting": []
+                });
+        } );
+    </script>
+
+    <!-- Google chart: https://google-developers.appspot.com/chart/interactive/docs/quick_start -->
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+
+        // Load the Visualization API and the piechart package.
+        google.load('visualization', '1.0', {'packages':['corechart']});
+
+        // Set a callback to run when the Google Visualization API is loaded.
+        google.setOnLoadCallback(drawChart);
+
+        // Callback that creates and populates a data table,
+        // instantiates the pie chart, passes in the data and
+        // draws it.
+        function drawChart() {
+
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Member');
+            data.addColumn('number', 'Duties');
+            var xData = @Html.Raw(Json.Encode(ViewBag.ChartNames));
+            var yData = @Html.Raw(Json.Encode(ViewBag.ChartNumbers));
+
+            for(var i = 0; i < xData.length; i++){
+                data.addRow([xData[i], yData[i]]);
+            }
+
+
+            // Set chart options
+            var options = {'title':'@ViewBag.Title',
+                'width':400,
+                'height':300};
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chartArea'));
+            chart.draw(data, options);
+        }
+        </script>
+    }

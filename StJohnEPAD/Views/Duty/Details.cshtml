@@ -104,6 +104,10 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.DutyOrganiserPhoneNumber)
     </div>
+        
+        <p>
+            @Html.ActionLink("Post Duty Report", "Details", "DutyReport", new { id = Model.DutyID }, null)
+        </p>
     }
 </fieldset>
 <p>

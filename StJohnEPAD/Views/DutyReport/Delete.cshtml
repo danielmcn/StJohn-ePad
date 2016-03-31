@@ -1,0 +1,47 @@
+﻿@model StJohnEPAD.Models.PostDutyReport
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>PostDutyReport</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PRFNumbers)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PRFNumbers)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.AnyOtherComments)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.AnyOtherComments)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastUpdated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastUpdated)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserProfile.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserProfile.UserName)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

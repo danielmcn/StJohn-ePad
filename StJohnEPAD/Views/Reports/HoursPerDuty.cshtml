@@ -1,0 +1,59 @@
+﻿@model IEnumerable<StJohnEPAD.ViewModels.HoursPerDutyViewModel>
+
+@{
+    ViewBag.Title = "Hours Per Duty";
+}
+
+<h2 class="StJohnHeader">@ViewBag.TItle</h2>
+<p>
+
+</p>
+
+<table id="HoursByDuty">
+    <thead>
+        <tr>
+            <th>Duty ID</th>
+            <th>Duty Name</th>
+            <th>Total Hours</th>
+            <th>Total Members</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var item in Model)
+            {
+            <tr>
+                <td>@item.DutyID</td>
+                <td>@item.DutyName</td>
+                <td>@item.HoursPerDuty</td>
+                <td>@item.MembersPerDuty</td>
+            </tr>
+            
+            }
+        }
+    </tbody>
+</table>
+
+<h3>Total Duties:  @ViewBag.TotalDuties</h3>
+<h3>Total Members: @ViewBag.TotalMembers</h3>
+<h3>Total Hours:   @ViewBag.TotalHours</h3>
+
+@section scripts{
+    <!-- Datatables Copyright (c) 2008-2013 SpryMedia Limited
+    http://datatables.net -->
+
+    <link href="@Url.Content("~/Content/themes/base/minified/jquery.dataTables.min.css")" rel="stylesheet" type="text/css" />
+    <!--<script type="text/javascript" src="~/Scripts/jquery.dataTables.js"></script>-->
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready( function() {
+            $('#HoursByDuty').dataTable(
+                {
+                    paging: true,
+                    searching: true,
+                    "aaSorting": []
+                });
+        } );
+    </script>
+    }

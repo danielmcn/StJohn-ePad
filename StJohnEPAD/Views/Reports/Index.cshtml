@@ -1,0 +1,16 @@
+@{
+    ViewBag.Title = "Statistics";
+}
+<div class="StJohnHeader">
+    <h1>@ViewBag.Title.</h1>
+</div>
+<h2>@ViewBag.Message</h2>
+<br />
+
+<h2>Unit stats & figures</h2>
+<ul>
+    <li>@Html.ActionLink("Duty hours (for person)", "DutyPerUser",new {id = 1, from = "", to = ""})</li>
+    <li>@Html.ActionLink("Duty hours (by division)", "HoursPerDuty")</li>
+    <li>@Html.ActionLink("Duty hours (all users)", "DutyPerAllUsers")</li>
+
+</ul>

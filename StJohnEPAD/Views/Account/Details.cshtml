@@ -1,0 +1,67 @@
+﻿@model StJohnEPAD.Models.UserProfile
+@{
+    ViewBag.Title = "Manage Account";
+}
+
+<hgroup class="StJohnHeader">
+    <h1>@ViewBag.Title</h1>
+</hgroup>
+
+<p class="message-success">@ViewBag.StatusMessage</p>
+
+<p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
+
+@using (Html.BeginForm())
+{
+        <fieldset>
+        <legend>Account</legend>
+
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.HiddenFor(model => model.UserId)
+    @Html.HiddenFor(model => model.RowVersion)
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Name)
+    </div>
+    <div class="editor-field">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.EmailAddress)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.EmailAddress)
+        @Html.ValidationMessageFor(model => model.EmailAddress)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.TelephoneNumber)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.TelephoneNumber)
+        @Html.ValidationMessageFor(model => model.TelephoneNumber)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ReceiveEmails)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.ReceiveEmails)
+        @Html.ValidationMessageFor(model => model.ReceiveEmails)
+    </div>
+            <p>
+            <input type="submit" value="Update" />
+        </p>
+    </fieldset>
+}
+
+@Html.ActionLink("Change Password", "Manage")
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    }
+
